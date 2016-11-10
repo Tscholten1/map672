@@ -110,29 +110,31 @@
         // BEGIN WRITING CODE FOR LAB 03 HERE
         
         var city1Name = "Lexington";
-        var city1Lat = "38.070995"
-        var city1Lon = "-84.593925"
-        var city1Pop = "314,488"
-        var city1Capital = console.log("false");
+        var city1Lat = 38.070995;
+        var city1Lon = -84.59392;
+        var city1Pop = 314488;
+        var city1Capital = false;
 
         var city2Name = "Frankfort";
-        var city2Lat = "38.200906"
-        var city2Lon = "-84.87328"
-        var city2Pop = "25,530"
+        var city2Lat = 38.20090;
+        var city2Lon = -84.87328;
+        var city2Pop = 2530;
         var city2Capital = console.log("true");
-        
-        var city3Name = "Louisville";
-        var city3Lat = "38.328732"
-        var city3Lon = "-85.764771"
-        var city3Pop = "760,030"
-        var city3Capital = console.log("false");
+//        
+//        var city3Name = "Louisville";
+//        var city3Lat = "38.328732"
+//        var city3Lon = "-85.764771"
+//        var city3Pop = "760,030"
+//        var city3Capital = console.log("false");
      
         
-    ("The total population of the three largest cities in Kentucky is");
-        totalpop = (city1Pop + city2Pop + city3Pop);
-        
-    ("The average population of the three largest cities in Kentucky is");
-        averagepop = (city1Pop + city2Pop + city3Pop/3);
+
+//        var totalpop = city1Pop + city2Pop + city3Pop;
+//        
+//        console.log("The total population of the three largest cities in Kentucky is: ", totalPop);
+//        
+//    ("The average population of the three largest cities in Kentucky is");
+//        averagepop = (city1Pop + city2Pop + city3Pop/3);
         
         var cities = ["Lexington", "Frankfort", "Louisville"];
         console.log(cities);
@@ -151,15 +153,15 @@
             .bindPopup(city1Popup);
         
 //      UNCOMMENT CITY2 MAKER CODE HERE
-//        var city2Popup = "<b>"+city2Name+"</b><br>"
-//                        +"<b>population</b>: "+city2Pop;
-//        
-//        if(city2Capital == true) {
-//            city2Popup += "<br>Capital of the Commonwealth of Kentucky";   
-//        }
-//        
-//        L.marker([city2Lat,city2Lon]).addTo(map)
-//            .bindPopup(city2Popup);
+        var city2Popup = "<b>"+city2Name+"</b><br>"
+                        +"<b>population</b>: "+city2Pop.toLocaleString();
+        
+        if(city2Capital == true) {
+            city2Popup += "<br>Capital of the Commonwealth of Kentucky";   
+        }
+        
+        L.marker([city2Lat,city2Lon]).addTo(map)
+            .bindPopup(city2Popup);
         
 //         CITY3 MARKER CODE HERE
 //        var city3Popup = "<b>"+city3Name+"</b><br>"
