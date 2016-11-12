@@ -80,8 +80,15 @@
         <p>Map authored by, Tom Scholten</p>
 
         <p>Additional information about <a href="#">the data</a></p>
-        
+
         <p>The state of Kentucky is one of four U.S. states constituted as a commonwealth. The region was originally part of the Commonwealth of Virginia, but became the 15th U.S. state in 1792. Other interesting facts about the Commonwealth of Kentucky include: The state is known to have the worlds longest cave system (Mammoth Cave National Park) A very unique geographical feature is the "Kentucky Bend" which is a portion of the state surrounded by Tennessee and Missouri in the western corner of the state. Access to this exclave of Kentucky is via a road through a portion of Tennessee.</p>
+
+
+        The total population of the three largest cities in Kentucky is:
+    
+       <p>The average population of the three largest cities in Kentucky is: </p> 
+        
+       
 
     </section>
 
@@ -117,24 +124,26 @@
         var city2Name = "Frankfort";
         var city2Lat = 38.20090;
         var city2Lon = -84.87328;
-        var city2Pop = 2530;
-        var city2Capital = console.log("true");
+        var city2Pop = 25300;
+        var city2Capital = true;
         //        
-        //        var city3Name = "Louisville";
-        //        var city3Lat = "38.328732"
-        //        var city3Lon = "-85.764771"
-        //        var city3Pop = "760,030"
-        //        var city3Capital = console.log("false");
+        var city3Name = "Louisville";
+        var city3Lat = 38.328732;
+        var city3Lon = -85.764771;
+        var city3Pop = 760030;
+        var city3Capital = false;
 
-
-
-        //        var totalpop = city1Pop + city2Pop + city3Pop;
+        var totalpop = city1Pop + city2Pop + city3Pop;
         //        
-        //        console.log("The total population of the three largest cities in Kentucky is: ", totalPop);
+        console.log("The total population of the three largest cities in Kentucky is ", totalpop);
+        
+        var totalpop;
+        totalpop = (city1Pop + city2Pop + city3Pop);
         //        
-        //    ("The average population of the three largest cities in Kentucky is");
-        //        averagepop = (city1Pop + city2Pop + city3Pop/3);
-
+        console.log("The average population of the three largest cities in Kentucky is ", averagepop);
+        averagepop = (city1Pop + city2Pop + city3Pop / 3);
+        var averagepop;
+        
         var cities = ["Lexington", "Frankfort", "Louisville"];
         console.log(cities);
 
@@ -161,18 +170,15 @@
             .bindPopup(city2Popup);
 
         //         CITY3 MARKER CODE HERE
-        //        var city3Popup = "<b>"+city3Name+"</b><br>"
-        //                        +"<b>population</b>: "+city3Pop;
-        //        
-        //        if(city3Capital == true) {
-        //            city3Popup += "<br>Capital of the Commonwealth of Kentucky";   
-        //        }
-        //        
-        //        L.marker([city3Lat,city3Lon]).addTo(map)
-        //            .bindPopup(city3Popup);
-    </script>
+        var city3Popup = "<b>" + city3Name + "</b><br>" + "<b>population</b>: " + city3Pop.toLocaleString();
 
-    // Notes to Rich Donohue. I have invested enough time and struggle in this Lesson 3 lab and feel that it is best for me to move on to Lesson 4 which is a week overdue soon. Various elements of this lesson and lab presented siginificant challenges the most obvious one was the problems with my laptop which set me back several days. I also think that the disorganization and duplication of multiple files and folders in Lesson 3 of Brackets (see screen capture in the Canvas) also confused me with the project. Conceptually, the lesson 3 reading made sense to me and I worked through the examples as shown by the html file that I uploaded to GitHub web. When it came to the Lab, however, things were more of a struggle. I reflected back on the Lesson 3 examples and instructions and even went back to Lesson 2 to see what code allowed text to appear on the web map, but my map just did seem accept the coding that I was trying. I was also inclear about several instructions in the lab particularly the part of "uncommenting" code for each city. I suspect that since I did not do this, that is why only one "ballon" appears on my web map. I followed the instructions and examples in the lesson for calculating the total and average populations of the three cities, but again, this text did not appear on the web map for an unknown reason. As you can (hopefully) see in the html source script, I did try some things and even others, but then deleted them since the console showed errors and the map portion of the web page did not populate. Even as I have written these notes using script (//) that I thought would only appear in the html and NOT on the web map seems to have failed.
+        if (city3Capital == true) {
+            city3Popup += "<br>Capital of the Commonwealth of Kentucky";
+        }
+
+        L.marker([city3Lat, city3Lon]).addTo(map)
+            .bindPopup(city3Popup);
+    </script>
 
 </body>
 
