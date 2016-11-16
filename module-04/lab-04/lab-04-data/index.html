@@ -96,20 +96,24 @@
 		// add tiles to map
         map.addLayer(tiles);
             
-		// variable to hold string value of city name
-		var cityName = "Denver";
-		
+		// variable to hold string value of each of the three cities
+		var cities = ["Dusseldorf", "Cologne", "Nuremberg"];
+		var city1Coords = [51.2277, 6.7735];
+        var city2Coords = [50.9375, 6.9603];
+        var city3Coords = [49.4254, 11.0797];
+        
 		// variable to hold number value of city population
 		var cityPopulation = 649495;
         
 		// build a string with HTML tags and content
-        var popup = "<b>" + cityName + "</b><br>" +
-                    "<b>population</b>: " + cityPopulation;
+//        var popup = "<b>" + cityName + "</b><br>" +
+//                    "<b>population</b>: " + cityPopulation;
 
         // create a Leaflet marker at the coordinates of Denver, CO
 		// add it to the map
 		// and bind the popup content to the marker.
-        L.marker([39.74, -104.99]).addTo(map)
+        var cityCoords = [39.74, -104.99];
+        L.marker(cityCoords).addTo(map)
 			.bindPopup(popup);
               
     </script>
