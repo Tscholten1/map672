@@ -97,26 +97,26 @@
         map.addLayer(tiles);
             
 		// variable to hold string value of each of the three cities
-		var cities = ["Dusseldorf", "Berlin", "Nuremberg"];
-        for (var i = 0; i < cities.length; i++) {
-            console.log(i); // output the current value of i
-            console.log(cities[i]); // use i to access an index of the array
-        }
+		var city1 = ["Dusseldorf",];
+        var city1pops = [593700];
+        var city1Capital = false;
+        var city1Coords = [51.2277, 6.7735];           
         
-        var city1Coords = [51.2277, 6.7735];
+        var city2 = ["Berlin",];
+        var city2pops = [3500000];
+        var city2Capital = true;
         var city2Coords = [52.5200, 13.4050];
+            
+        var city3 = ["Nuremberg",];
+        var city3pops = [496000];
+        var city3Capital = false;
         var city3Coords = [49.4254, 11.0797];
-        var cityCoords = [
-            ["Dusseldorf", "Berlin", "Nuremberg"]
-            [city1Coords, city2Coords, city3Coords]
-            ["Dusseldorf", 593700, false]
-            ["Berlin", 3500000, true]
-            ["Nuremberg", 496000, false] 
-        ];
+        
+        
+        // use i to access an index of the array
         
 		// variable to hold number value of city population
-		var cityPops = [593700, 3500000, 496000];
-        
+
 		// build a string with HTML tags and content
 //        var popup = "<b>" + cityName + "</b><br>" +
 //                    "<b>population</b>: " + cityPopulation;
