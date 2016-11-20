@@ -6,137 +6,138 @@
     <title>Lab 04 Starter Template</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css" />
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
-	<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
 
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			background: whitesmoke;
-			font-family: "Noto Sans", sans-serif;
-			color: #3d3d3d;
-		}
-
-    	section {
-			width: 960px;
-			margin: 20px auto;
-		}
-
-		h1 {
-			width: 960px;
-			margin: 20px auto;
-			font-family: "Lora", serif;
-			letter-spacing: .04em;
-		}
-
-		h2 {
-			font-family: "Lora", serif;
-			letter-spacing: .04em;
-		}
-
-		p {
-			font-size: 1em;
-			line-height: 1.5em;
-		}
-
-		a {
-			color: #005daa;
-      		font-weight: bold;
-			text-decoration: none;
-		}
-
-		a:hover {
-			text-decoration: underline;
-		}
-		#map {
-		  width: 960px;
-		  height: 540px;
-		  margin: 10px auto;
-		  border: 2px solid #d3d3d3;
-		}
-	</style>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: whitesmoke;
+            font-family: "Noto Sans", sans-serif;
+            color: #3d3d3d;
+        }
+        
+        section {
+            width: 960px;
+            margin: 20px auto;
+        }
+        
+        h1 {
+            width: 960px;
+            margin: 20px auto;
+            font-family: "Lora", serif;
+            letter-spacing: .04em;
+        }
+        
+        h2 {
+            font-family: "Lora", serif;
+            letter-spacing: .04em;
+        }
+        
+        p {
+            font-size: 1em;
+            line-height: 1.5em;
+        }
+        
+        a {
+            color: #005daa;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        #map {
+            width: 960px;
+            height: 540px;
+            margin: 10px auto;
+            border: 2px solid #d3d3d3;
+        }
+    </style>
 </head>
 
 <body>
 
-	<h1>Top Three Cities to Visit in Germany</h1>
+    <h1>Top Three Cities to Visit in Germany</h1>
 
     <div id='map'></div>
 
-	<section>
-		
-		<h2>about this map</h2>
-		
-		<p>Map authored by me, Tom Scholten</p>
+    <section>
 
-		<p>Additional information about <a href="#">the data</a> and map goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. </p>
+        <h2>A country with a beer for each region</h2>
 
-	</section>
-	
-	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+        <p>Map authored by Tom Scholten</p>
+
+        <p>Germany is similar to the United States with several distinct geographic regions each characterized by unique features in people, culture, architecture, cuisine, and moore. As a country known for enjoying beer, the cities of Duseeldorf, Nuremberg, and Berlin each are known for their unique beer which is often tightly attributed to the city. For example, Alt beer is very common in Dusseldorf, but likely will not be available in other cities in Germany. In fact, approximately 20 miles south of Duesseldorf, in Cologne, Kolsch is the dominant beer and locals will look with disdain if someone attempts to order an alt beer. Berliner Weiss is common in Berlin, while hefeweizen beers are the dominant brew in the Bavaira region where Nuremberg is located. <a href="#">the data</a>  </p>
+
+    </section>
+
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script>
-
-		// initial map options
-		var options = {
+        // initial map options
+        var options = {
             center: [51.1657, 10.4515], // set to zoom to center of Germay
-            zoom: 4
+            zoom: 6
         }
-		
-		// instantiate Leaflet map object
+
+        // instantiate Leaflet map object
         var map = L.map('map', options);
-        
-		// request remote basemap tiles
-		var tiles = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
-});
-		 // add tiles to map
+
+        // request remote basemap tiles
+        var tiles = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+        });
+        // add tiles to map
         map.addLayer(tiles);
-            
-		// variable to hold string value of each of the three cities
-		var cities = ["Dusseldorf", "Berlin", "Nuremberg"];
-        
+
+        // variable to hold string value of each of the three cities
+        var cities = ["Dusseldorf", "Berlin", "Nuremberg"];
+
         // 2-D array containing coordinates for three cities in Germany
-        var cityCoords = [ 
+        var cityCoords = [
             [51.2277, 6.7735],
             [52.5200, 13.4050],
             [49.4254, 11.0797]
         ];
-        
+
+
         // population of three cities in Germany
         var citypops = [593700, 3500000, 496000];
-        
+
         // boolean script designating whether the city is the capital of Germany or not
         var cityCapital = [false, true, false];
-        
-            for(var i = 0; i < cities.length; i++) {
-                var popup = "b"+cities[i]+"</b><br>"
-                +"<b>population</b>: "+citypops[i];
-                if(cityCapital[i] === true) {
-                    popup += "<br>Is the capital city of Germany";
-                }      
+
+        for (var i = 0; i < cities.length; i++) {
+            var popup = "b" + cities[i] + "</b><br>" + "<b>population</b>: " + citypops[i];
+            if (cityCapital[i] === true) {
+                popup += "<br>Is the capital city of Germany";
             }
-        
-        //
-            L.marker(cityCoords [i]).addTo(map)
-            .bindPopup(popup);
-        
+
+            L.marker(cityCoords[i]).addTo(map)
+                .bindPopup(popup);
+
+        }
+
+
+
         // use i to access an index of the array
-		// variable to hold number value of city population
-		// build a string with HTML tags and content
-//        var popup = "<b>" + cityName + "</b><br>" +
-//                    "<b>population</b>: " + cityPopulation;
+        // variable to hold number value of city population
+        // build a string with HTML tags and content
+        //        var popup = "<b>" + cityName + "</b><br>" +
+        //                    "<b>population</b>: " + cityPopulation;
 
         // create a Leaflet marker at the coordinates of Denver, CO
-		// add it to the map
-		// and bind the popup content to the marker.
-//        var cityCoords = [39.74, -104.99];
-//        L.marker(cityCoords).addTo(map)
-//			.bindPopup(popup);
-              
+        // add it to the map
+        // and bind the popup content to the marker.
+        //        var cityCoords = [39.74, -104.99];
+        //        L.marker(cityCoords).addTo(map)
+        //			.bindPopup(popup);
     </script>
-    
+
 </body>
