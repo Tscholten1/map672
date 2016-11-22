@@ -13,6 +13,42 @@
 <script>
 /* JavaScript code goes here! */
 
+// pg. 2
+    function helloMap() {
+        console.log("Hello Map");
+    }
+    helloMap(); // Console output will be Hello Map 
+    helloMap(); // Console output will be Hello Map 
+    helloMap(); // Console output will be Hello Map 
+  
+    var hellomap = function() {
+        console.log("Hell Map");    
+    };
+    
+    helloMap();
+    function outerFunction(message) { //pg.4
+        console.log(message);
+        var innerfunction = function(message) {
+            console.log(message);
+        };
+        innerfunction("I'm inside!!");
+    }
+    outerFunction("Im outide!!!");
+    
+    function saySomething(message) { // function signature accepts information as a "parameter"
+        console.log(message);
+    }
+
+    saySomething("Hello Map"); // function is called, passing an "argument" with it
+    
+    function saySomething(message) { 
+        console.log(message);
+    }
+    saySomething("Hello Map");
+    saySomething("Please enter the address you'd like to search for.");
+    
+    
+    
 </script>
     
 </body>
