@@ -78,7 +78,7 @@
 
         <h2>about this map</h2>
 
-        <p>Map authored by Tom Scholte, 11.2016</p>
+        <p>Map authored by Tom Scholten, 11.2016</p>
 
         <p>Additional information about <a href="#">the data</a> and map goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. </p>
 
@@ -111,30 +111,36 @@
         var dusselArea = Number(prompt("Enter data", "Enter the area of Dusseldorf in square miles"));
         var nuremArea = Number(prompt("Enter data", "Enter the area of Nuremberg in square miles"));
         var berlinArea = Number(prompt("Enter data", "Enter the area of Berlin in square miles"));
-        
+
 
         var cities = ["Dusseldorf", "Berlin", "Nuremberg"]; // var cities = // write 3 city names as Strings within an array
-        var cityCoords = [              //  var cityCoords = // write a two-dimensional array of the coordinates for each city
+        var cityCoords = [ //  var cityCoords = // write a two-dimensional array of the coordinates for each city
             [51.2277, 6.7735],
             [52.5200, 13.4050],
             [49.4254, 11.0797]
         ];
         var citypops = [593700, 3500000, 496000]; // var cityPops = // write the populations of the 3 cities as Numbers within an array;
-        var cityAeas = [83.94, 71.99, 344.3]; // var cityAreas = // write the areas of the 3 cities as Numbers within an array;
-        
-        
+
+        var cityAreas = [83.94, 71.99, 344.3]; // var cityAreas = // write the areas of the 3 cities as Numbers within an array;
+
+
         var button = document.getElementById("map-cities");
 
         button.addEventListener("click", function () {
 
+             do {
+            var units =prompt('Enter the units for calculating density', 'Enter "miles" or "km"');
+        } while (units != "miles" && units != "km");
+       
+        mapCities(units);
+            
             var units = prompt('Enter the units for calculating density', 'Enter "miles" or "km"');
-
-            console.log(units);
-
-            // call a function named mapCities, and send the units variable as an argument
-
-        }); // addEventListener callback function ends here
-
+            mapCities(cities, cityCoords, citypops, cityAreas)
+            function mapCities(cities, cityCoords, cityPops, cityAreas)
+        });
+ 
+        // call a function named mapCities, and send the units variable as an argument
+        // addEventListener callback function ends here
 
         // write a function here named mapCities so that it accepts units as a parameter
 
