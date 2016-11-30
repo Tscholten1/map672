@@ -94,7 +94,6 @@
             zoom: 6
         }
 
-
         // creates the Leaflet map
         var map = L.map('map', options);
 
@@ -123,27 +122,15 @@
 
         var cityAreas = [83.94, 71.99, 344.3]; // var cityAreas = // write the areas of the 3 cities as Numbers within an array;
 
-
         var button = document.getElementById("map-cities");
 
         button.addEventListener("click", function () {
 
-             do {
-            var units =prompt('Enter the units for calculating density', 'Enter "miles" or "km"');
-        } while (units != "miles" && units != "km");
-       
-        mapCities(units);
-            
-            var units = prompt('Enter the units for calculating density', 'Enter "miles" or "km"');
-            mapCities(cities, cityCoords, citypops, cityAreas)
-            function mapCities(cities, cityCoords, cityPops, cityAreas)
-        });
- 
         // call a function named mapCities, and send the units variable as an argument
+            function mapCities;
         // addEventListener callback function ends here
 
         // write a function here named mapCities so that it accepts units as a parameter
-
 
         // write a function named calcPopDensity here so that it accepts a 
         // single city's population, area, and the value for units 
