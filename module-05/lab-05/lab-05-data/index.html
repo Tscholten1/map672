@@ -19,46 +19,46 @@
             font-family: "Noto Sans", sans-serif;
             color: #3d3d3d;
         }
-        
+
         section {
             width: 960px;
             margin: 20px auto;
         }
-        
+
         h1 {
             width: 960px;
             margin: 20px auto;
             font-family: "Lora", serif;
             letter-spacing: .04em;
         }
-        
+
         h2 {
             font-family: "Lora", serif;
             letter-spacing: .04em;
         }
-        
+
         p {
             font-size: 1em;
             line-height: 1.5em;
         }
-        
+
         a {
             color: #005daa;
             font-weight: bold;
             text-decoration: none;
         }
-        
+
         a:hover {
             text-decoration: underline;
         }
-        
+
         #map {
             width: 960px;
             height: 540px;
             margin: 10px auto;
             border: 2px solid #d3d3d3;
         }
-        
+
         button {
             font-size: 1.2em;
             /*            margin: 10px auto;*/
@@ -108,9 +108,9 @@
         // adds these tiles to the map
         map.addLayer(tiles);
 
-        var dusselArea = Number(prompt("Enter data", "Enter the area of Dusseldorf in square miles"));
-        var nuremArea = Number(prompt("Enter data", "Enter the area of Nuremberg in square miles"));
-        var berlinArea = Number(prompt("Enter data", "Enter the area of Berlin in square miles"));
+        // var dusselArea = Number(prompt("Enter data", "Enter the area of Dusseldorf in square miles"));
+        // var nuremArea = Number(prompt("Enter data", "Enter the area of Nuremberg in square miles"));
+        // var berlinArea = Number(prompt("Enter data", "Enter the area of Berlin in square miles"));
 
 
         var cities = ["Dusseldorf", "Berlin", "Nuremberg"]; // var cities = // write 3 city names as Strings within an array
@@ -129,29 +129,36 @@
         button.addEventListener("click", function () {
 
              do {
-            var units =prompt('Enter the units for calculating density', 'Enter "miles" or "km"');
-        } while (units != "miles" && units != "km");
-       
-        mapCities(units);
-            
-            var units = prompt('Enter the units for calculating density', 'Enter "miles" or "km"');
-            mapCities(cities, cityCoords, citypops, cityAreas)
-            function mapCities(cities, cityCoords, cityPops, cityAreas)
+                var units =prompt('Enter the units for calculating density', 'Enter "miles" or "km"');
+            } while (units != "miles" && units != "km");
+
+            mapCities(units);
+
         });
- 
+
+
+        function mapCities(units) {
+
+            // you have access to units here
+            console.log(units)
+
+            // and also access to the rest of the global variables
+            console.log(cityAreas)
+
+        }
+
+
         // call a function named mapCities, and send the units variable as an argument
         // addEventListener callback function ends here
 
         // write a function here named mapCities so that it accepts units as a parameter
 
 
-        // write a function named calcPopDensity here so that it accepts a 
-        // single city's population, area, and the value for units 
+        // write a function named calcPopDensity here so that it accepts a
+        // single city's population, area, and the value for units
         // determined by the user
     </script>
 
 </body>
 
 </html>
-
-<script>
