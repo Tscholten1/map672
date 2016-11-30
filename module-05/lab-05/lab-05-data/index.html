@@ -129,15 +129,24 @@
         button.addEventListener("click", function () {
 
              do {
-            var units =prompt('Enter the units for calculating density', 'Enter "miles" or "km"');
-        } while (units != "miles" && units != "km");
+                var units =prompt('Enter the units for calculating density', 'Enter "miles" or "km"');
+            } while (units != "miles" && units != "km");
 
-        mapCities(units);
+            mapCities(units);
 
-            var units = prompt('Enter the units for calculating density', 'Enter "miles" or "km"');
-            mapCities(cities, cityCoords, citypops, cityAreas)
-            function mapCities(cities, cityCoords, cityPops, cityAreas)
         });
+
+
+        function mapCities(units) {
+
+            // you have access to units here
+            console.log(units)
+
+            // and also access to the rest of the global variables
+            console.log(cityAreas)
+
+        }
+
 
         // call a function named mapCities, and send the units variable as an argument
         // addEventListener callback function ends here
