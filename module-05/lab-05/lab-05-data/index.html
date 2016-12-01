@@ -19,46 +19,46 @@
             font-family: "Noto Sans", sans-serif;
             color: #3d3d3d;
         }
-
+        
         section {
             width: 960px;
             margin: 20px auto;
         }
-
+        
         h1 {
             width: 960px;
             margin: 20px auto;
             font-family: "Lora", serif;
             letter-spacing: .04em;
         }
-
+        
         h2 {
             font-family: "Lora", serif;
             letter-spacing: .04em;
         }
-
+        
         p {
             font-size: 1em;
             line-height: 1.5em;
         }
-
+        
         a {
             color: #005daa;
             font-weight: bold;
             text-decoration: none;
         }
-
+        
         a:hover {
             text-decoration: underline;
         }
-
+        
         #map {
             width: 960px;
             height: 540px;
             margin: 10px auto;
             border: 2px solid #d3d3d3;
         }
-
+        
         button {
             font-size: 1.2em;
             /*            margin: 10px auto;*/
@@ -67,7 +67,7 @@
 </head>
 
 <body>
-    <h1>map title</h1>
+    <h1>Three Really Great Must-Visit Cities in Germany</h1>
 
     <div id='map'></div>
 
@@ -80,7 +80,7 @@
 
         <p>Map authored by Tom Scholten, 11.2016</p>
 
-        <p>Additional information about <a href="#">the data</a> and map goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. </p>
+        <p>Additional information about <a href="#">the data</a>Germany is similar to the United States with several distinct geographic regions each characterized by unique features in people, culture, architecture, cuisine, and moore. As a country known for enjoying beer, the cities of Duseeldorf, Nuremberg, and Berlin each are known for their unique beer which is often tightly attributed to the city. For example, Alt beer is very common in Dusseldorf, but likely will not be available in other cities in Germany. In fact, approximately 20 miles south of Duesseldorf, in Cologne, Kolsch is the dominant beer and locals will look with disdain if someone attempts to order an alt beer. Berliner Weiss is common in Berlin, while hefeweizen beers are the dominant brew in the Bavaira region where Nuremberg is located. </p>
 
     </section>
 
@@ -126,21 +126,26 @@
 
         button.addEventListener("click", function () {
 
-<<<<<<< HEAD
-=======
-             do {
-                var units =prompt('Enter the units for calculating density', 'Enter "miles" or "km"');
+            //<<<<<<< HEAD
+            //=======
+            do {
+                var units = prompt('Enter the units for calculating density', 'Enter "miles" or "km"');
             } while (units != "miles" && units != "km");
 
             mapCities(units);
 
         });
 
-
         function mapCities(units) {
+            for (var i = 0; i < cities.length; i++) {
+                var density = calcPopDensity(citypops[i], cityAreas[i], units);
+
+//                var popup = "<b>" + cities[i] + "</b><br>" + "<b>density"<b>;
+
+            }
 
             // you have access to units here
-            console.log(units)
+//          function mapCities(units);
 
             // and also access to the rest of the global variables
             console.log(cityAreas)
@@ -148,22 +153,32 @@
         }
 
 
->>>>>>> origin/master
-        // call a function named mapCities, and send the units variable as an argument
-            function mapCities;
+//        >>> >>> > origin / master
+            // call a function named mapCities, and send the units variable as an argument
+//        function mapCities(units);
+        
         // addEventListener callback function ends here
 
         // write a function here named mapCities so that it accepts units as a parameter
 
-<<<<<<< HEAD
+//        << << << < HEAD
         // write a function named calcPopDensity here so that it accepts a 
         // single city's population, area, and the value for units 
-=======
+//            === === =
 
-        // write a function named calcPopDensity here so that it accepts a
-        // single city's population, area, and the value for units
->>>>>>> origin/master
-        // determined by the user
+            // write a function named calcPopDensity here so that it accepts a
+            // single city's population, area, and the value for units
+            
+            function calcPopDensity(citypops, cityAreas, units) {
+                if (units == "miles") {
+                    var density = citypops / cityAreas;
+                } else {
+                    var density = citypops / (cityAreas * 2.5899);
+                }
+            }
+
+//        >>> >>> > origin / master
+            // determined by the user
     </script>
 
 </body>
