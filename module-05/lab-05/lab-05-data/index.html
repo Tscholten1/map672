@@ -139,14 +139,15 @@
 
                 var density = calcPopDensity(citypops[i], cityAreas[i], units);
 
-                console.log(density);
+                // console.log(density);
 
-                var popup = "<b>" + cities[i] + "</b><br>" + density;
+                var popup = "<b>" + cities[i] + "</b><br> + density: " + density;
 
                 console.log(popup)
 
                 // need to create a new marker here and bind popup
-                L.marker(cityCoords[i]).addTo(map);
+                L.marker(cityCoords[i]).addTo(map)
+                    .bindPopup(popup);
 
             }
 
