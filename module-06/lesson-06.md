@@ -157,7 +157,7 @@ var iguana = {
     questForWorldDomination: true
 }
 console.log(iguana["name"]); // output "Jack"
-console.log(iguana["weight"); // output 4.2
+console.log(iguana["weight"]); // output 4.2
 ```
 
 Similarly, we can use bracket notation to access our nested object property values, or even mix and match dot notation with bracket syntax (see the example outputting how many sunglasses the iguana is carrying here)!

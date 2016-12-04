@@ -6,7 +6,7 @@ The goal of this lab is to build a map with markers placed on three cities withi
 
 **Optional:** If you're a sports fan, you may wish to make the theme of your map more sports-oriented, and even consider adding a logo within the popup as well (see the **challenge** at bottom). Or pick a different a different thematic theme and include other information about the city to include in the popup.
 
-Begin with the starter template located in the *lab-03-data*, save your changes to this *index.html* file, and **commit changes to your local GitHub repository** as you work. Begin your coding beneath line 94 containing the comment `begin writing/editing Lab 06 code here`.
+Begin with the starter template located in the *lab-06-data*, save your changes to this *index.html* file, and **commit changes to your local GitHub repository** as you work. Begin your coding beneath line 94 containing the comment `begin writing/editing Lab 06 code here`.
 
 So far in MAP672, the modules have used the array data type to structure and store information about various cities for web mapping using a Leaflet map. This lab will improve upon these maps by using JavaScript objects to store our information, integrating these objects with the looping and conditional logic practiced within earlier modules.
 
