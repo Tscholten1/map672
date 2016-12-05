@@ -10,26 +10,51 @@
 <body>
 
 
-<script>
-/* JavaScript code goes here! */
+    <script>
+        /* JavaScript code goes here! */
 
-var iguana = {
-questForWorldDomination: true,
-age: 8,
-eyes: "dreamy",
-name: "Jack",
-weight: 4.2,
-toolkit: {
-conquestFlag: "red",
-surrenderFlag: "white",
-food: true,
-music: "Anthrax",
-coolSunGlasses: 8
-}
-}
-console.log(iguana.name); // output "Jack"
-console.log(iguana.weight); // output 4.2
-    
-</script>
-    
+        var iguana = {
+            questForWorldDomination: true,
+            age: 8,
+            eyes: "dreamy",
+            name: "Jack",
+            weight: 4.2,
+            toolkit: {
+                conquestFlag: "red",
+                surrenderFlag: "white",
+                food: true,
+                music: "Anthrax",
+                coolSunGlasses: 8
+            }
+        }
+        console.log(iguana.name); // output "Jack"
+        console.log(iguana.weight); // output 4.2
+        console.log(iguana.toolkit.music); // will output "Anthrax"
+
+        console.log(iguana["name"]); // output "Jack"
+        console.log(iguana["weight"]); // output 4.2
+
+        console.log(iguana["toolkit"]["music"]); // output Anthrax
+        console.log(iguana["toolkit"].coolSunGlasses); // output 8
+
+        iguana.weight = 5.2
+        iguana.age = 9
+        console.log(iguana.weight); // output 5.2
+        console.log(iguana.age); // output 9
+
+        iguana["weight"] = 6.1;
+        iguana["age"] = 10;
+
+        console.log(iguana.weight); // output is 6.1
+        console.log(iguana.age); // output is 10
+        
+        console.log(iguana); // output entire object for inspection
+        
+        iguana.color = "green";
+        iguana.madGenius = true;
+        
+        console.log(iguana); // Inspect the console to see that object has the additional properties
+        
+    </script>
+
 </body>
