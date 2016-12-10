@@ -19,39 +19,39 @@
             font-family: "Noto Sans", sans-serif;
             color: #3d3d3d;
         }
-
+        
         section {
             width: 960px;
             margin: 20px auto;
         }
-
+        
         h1 {
             width: 960px;
             margin: 20px auto;
             font-family: "Lora", serif;
             letter-spacing: .04em;
         }
-
+        
         h2 {
             font-family: "Lora", serif;
             letter-spacing: .04em;
         }
-
+        
         p {
             font-size: 1em;
             line-height: 1.5em;
         }
-
+        
         a {
             color: #005daa;
             font-weight: bold;
             text-decoration: none;
         }
-
+        
         a:hover {
             text-decoration: underline;
         }
-
+        
         #map {
             width: 960px;
             height: 540px;
@@ -69,10 +69,9 @@
 
     <section>
 
-        <p>Map authored by me, MY NAME</p>
+        <p>Map authored by Tom Scholten</p>
 
-        <p>Additional information about <a href="#">the data</a> and map goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus
-            luctus. </p>
+        <p>Additional information about <a href="#">the data</a> and map goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. </p>
 
     </section>
 
@@ -81,7 +80,7 @@
 
     <script>
         var map = L.map('map', {
-            center: [38.96, -85.36],
+            center: [40.603106, -89.073398],
             zoom: 8,
         });
 
@@ -93,14 +92,69 @@
 
         // Begin writing/modifying code for Lab 06 here
 
-        var cities = [{
-            name: "Louisville",
-            properties: {
-                coordinates: [38.25, -85.7667],
-                population: 756832,
-                state: "KY"
+        var cities = [
+
+            {
+                name: "Madison",
+                properties: {
+                    coordinates: [43.0731, -89.4012],
+                    population: 250000,
+                    state: "Wisconsin",
+                }
+            },
+            
+            {
+                name: "Chicago",
+                properties: {
+                    coordinates: [41.8781, -87.6298],
+                    population: 2700000,
+                    state: "Illinois",
+                }
+            },
+            
+            {
+                name: "Springfield",
+                properties: {
+                    coordinates: [39.7817, -89.6501],
+                    population: 117000,
+                    state: "Illinois",
+                }
+            },
+            
+            ]; // define the cities within an object and store within an array
+
+        // var cities = [Madison, Chicago, Springfield];
+
+        for (var i = 0; i < cities.length; i++) {
+            var props = cities[i].properties;
+            console.log(cities[i], props); // loop through each city and its properties
+
+            var popup = buildPopup(cities[i].name, props.population, props.state);
+
+            L.marker(props.coordinates).addTo(map).bindPopup(popup); // create a Leaflet marker withi the city's coordinates and bind the popup.
+        }
+
+        function buildPopup(name, pop, state) {
+            if (name == "Madison") {
+                var colorClass = "blue"; // assign a CSS class name to a variable
+
+            } else if (name == "Chicago") {
+                var colorClass = "navy"; // assign a CSS class name to a variable
+
+            } else if (name == "Springfield") {
+                var colorClass = "maroon"; // assign a CSS class name to a variable
             }
-        }];
+        }
+ 
+        return "<div class= '"+colorClass+" '><b>"+name+"</b><br>"+"<b>population</b>: "+pop.toLocaleString()+"<div>";
+        };
+        
+        var city = cities[i].name; //
+        var pop = props.population; //
+        var state = props.state; //
+
+        L.marker(props.coordinates).addTo(map)
+            .bindPopup(popup);
     </script>
 
 </body>

@@ -18,7 +18,7 @@
             age: 8,
             eyes: "dreamy",
             name: "Jack",
-            weight: 4.2,
+            weight: 4.2, // assume kilograms
             toolkit: {
                 conquestFlag: "red",
                 surrenderFlag: "white",
@@ -50,10 +50,82 @@
         
         console.log(iguana); // output entire object for inspection
         
-        iguana.color = "green";
+        iguana["color"] = "purple";
         iguana.madGenius = true;
+        iguana["unlovedAsBaby"] = true; // hence his need to compensate
+        
         
         console.log(iguana); // Inspect the console to see that object has the additional properties
+        
+        var iguana = {
+            name: "Jack",
+            weight: 4.2, // assume kilograms
+            age: 8,
+            eyes: "dreamy",
+            questForWorldDomination: true,
+            greeting: function() {
+                console.log("hello. I am your new overlord!!");
+            }     
+        }
+        
+        iguana.greeting();
+        
+        for (var key in iguana) {
+            console.log(iguana[key]); // outputs "Jack", "4.2", "8", "dreamy", questForWorldDomination"
+        }
+       
+        var iguana = {
+            name: "Jack",
+            weight: 4.2, // assume kilograms
+            age: 8,
+            eyes: "dreamy",
+            questForWorldDomination: true,
+            greeting: function(message) {
+                console.log(message);
+            }     
+        }
+        
+        iguana.greeting("Howdy There!!!"); // output is Howdy There!!
+        iguana.greeting("I am your new overlord!") // output is I am your new overlord
+         
+        var iguana = {
+            name: "Jack",
+            weight: 4.2, // Kilos
+            length: 1.5, // meters
+            age: 8,
+            eyes: "dreamy",
+            questForWorldDomination: true,
+            calculateBMI: function(w,l) {
+                return w / (l*l); // now you know how to calculate BMI
+            }     
+        }
+        var result = iguana.calculateBMI(4.2,1.5);
+        console.log(result); // output is 1.87 which is really underweight,
+            
+        var iguana = {
+            name: "Jack",
+            weight: 4.2, // Kilos
+            length: 1.5, // meters
+            age: 8,
+            eyes: "dreamy",
+            questForWorldDomination: true,
+            invasionPlans: function(inData) {
+                // iguana can do something with data here
+                console.log(inData);
+            }     
+        }
+        
+        var lexData = {
+            lat: 38.23,
+            lon: -89.21,
+            name: "Lexington",
+            pop: 821325
+            
+        }
+        
+        iguana.invasionPlans(lexData);
+        
+        
         
     </script>
 
