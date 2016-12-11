@@ -58,6 +58,29 @@
             margin: 10px auto;
             border: 2px solid #d3d3d3;
         }
+        
+        footer {
+            padding: 6px 10%;
+            width: 80%;
+        }
+        
+        p {
+            font-size: 1em;
+            color: crimson;
+        }
+        
+        .Wisconsin-red {
+            color: red;
+        }
+        
+        .Illinois-black {
+            color: black;
+        }
+        
+        .Illinois-yellow {
+            color: yellow;
+        }
+        
     </style>
 </head>
 
@@ -102,7 +125,7 @@
                     state: "Wisconsin",
                 }
             },
-            
+
             {
                 name: "Chicago",
                 properties: {
@@ -111,7 +134,7 @@
                     state: "Illinois",
                 }
             },
-            
+
             {
                 name: "Springfield",
                 properties: {
@@ -120,7 +143,7 @@
                     state: "Illinois",
                 }
             },
-            
+
             ]; // define the cities within an object and store within an array
 
         // var cities = [Madison, Chicago, Springfield];
@@ -135,23 +158,20 @@
         }
 
         function buildPopup(name, pop, state) {
-            if (name == "Madison") {
-                var colorClass = "blue"; // assign a CSS class name to a variable
-
-            } else if (name == "Chicago") {
-                var colorClass = "navy"; // assign a CSS class name to a variable
-
-            } else if (name == "Springfield") {
-                var colorClass = "maroon"; // assign a CSS class name to a variable
+            if (name == "Wisconsin") {
+                var colorClass = "red"; // assign a CSS class name to a variable
+            } else if (name == "Illinois") {
+                var colorClass = "black"; // assign a CSS class name to a variable
+            } else if (name == "Illinois") {
+                var colorClass = "yellow"; // assign a CSS class name to a variable
             }
-        }
- 
-        return "<div class= '"+colorClass+" '><b>"+name+"</b><br>"+"<b>population</b>: "+pop.toLocaleString()+"<div>";
+
+            return "<div class= '" + colorClass + " '><b>" + name + "</b><br>" + "<b>population</b>: " + pop.toLocaleString() + "<div>";
         };
-        
-        var city = cities[i].name; //
-        var pop = props.population; //
-        var state = props.state; //
+
+        // var city = cities[i].name;
+        // var pop = props.population;
+        // var state = props.state;
 
         L.marker(props.coordinates).addTo(map)
             .bindPopup(popup);
