@@ -66,8 +66,9 @@
         
         p {
             font-size: 1em;
-            color: crimson;
+            color: black;
         }
+        
         
         .Wisconsin-red {
             color: red;
@@ -85,7 +86,7 @@
 </head>
 
 <body>
-    <h1>map title</h1>
+    <h1>Three Midwest Cities Where I May Live</h1>
 
     <div id='map'></div>
 
@@ -94,7 +95,7 @@
 
         <p>Map authored by Tom Scholten</p>
 
-        <p>Additional information about <a href="#">the data</a> and map goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. </p>
+        <p>City names and population of three major Midwest cities where I may live someday.</p>
 
     </section>
 
@@ -157,18 +158,24 @@
             L.marker(props.coordinates).addTo(map).bindPopup(popup); // create a Leaflet marker withi the city's coordinates and bind the popup.
         }
 
+        
         function buildPopup(name, pop, state) {
-            if (name == "Wisconsin") {
+            if (name == "Madison") {
                 var colorClass = "red"; // assign a CSS class name to a variable
-            } else if (name == "Illinois") {
+            } else if (name == "Chicago") {
                 var colorClass = "black"; // assign a CSS class name to a variable
-            } else if (name == "Illinois") {
+            } else if (name == "Springfield") {
                 var colorClass = "yellow"; // assign a CSS class name to a variable
             }
 
-            return "<div class= '" + colorClass + " '><b>" + name + "</b><br>" + "<b>population</b>: " + pop.toLocaleString() + "<div>";
+            return "<div class='" + colorClass+"'><b>"+name+"</b><br>"+
+            "<b>population</b>: "+pop.toLocaleString()+"<div>";
         };
-
+        
+        var checker = "<div class = '" + colorClass + " '><b>" + name + "</b><br>" + "<b>population</b>: " + pop.toLocaleString() + "<div>";
+        
+        console.log('checking the string:', checker)
+        
         // var city = cities[i].name;
         // var pop = props.population;
         // var state = props.state;
