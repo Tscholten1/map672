@@ -69,7 +69,6 @@
             color: black;
         }
         
-        
         .Wisconsin-red {
             color: red;
         }
@@ -81,7 +80,6 @@
         .Illinois-yellow {
             color: yellow;
         }
-        
     </style>
 </head>
 
@@ -158,25 +156,24 @@
             L.marker(props.coordinates).addTo(map).bindPopup(popup); // create a Leaflet marker withi the city's coordinates and bind the popup.
         }
 
-        
-        function buildPopup(name, pop, state) {
             console.log()
+        function buildPopup(name, pop, state) { 
             if (name == "Madison") {
                 var colorClass = "red"; // assign a CSS class name to a variable
             } else if (name == "Chicago") {
                 var colorClass = "black"; // assign a CSS class name to a variable
-            } else if (name == "Springfield") {
+            } else if (name == "Chicago") {
                 var colorClass = "yellow"; // assign a CSS class name to a variable
             }
 
-            return "<div class='" + colorClass+"'><b>"+name+"</b><br>"+
-            "<b>population</b>: "+pop.toLocaleString()+"<div>";
+            return "<div class='" + colorClass + "'><b>" + name + "</b><br>" +
+                "<b>population</b>: " + pop.toLocaleString() + "<div>";
         };
-        
+
         var checker = "<div class = '" + colorClass + " '><b>" + name + "</b><br>" + "<b>population</b>: " + pop.toLocaleString() + "<div>";
-        
+
         console.log('checking the string:', checker)
-        
+
         // var city = cities[i].name;
         // var pop = props.population;
         // var state = props.state;
