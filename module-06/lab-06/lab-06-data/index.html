@@ -70,15 +70,15 @@
         }
         
         .Wisconsin-red {
-            color: red;
+            color: #bc2739;
         }
         
         .Illinois-black {
-            color: black;
+            color: #3d3d3d;
         }
         
         .Illinois-yellow {
-            color: yellow;
+            color: #f1f442;
         }
     </style>
 </head>
@@ -156,30 +156,24 @@
             L.marker(props.coordinates).addTo(map).bindPopup(popup); // create a Leaflet marker withi the city's coordinates and bind the popup.
         }
 
-            console.log()
-        function buildPopup(name, pop, state) { 
+        console.log()
+
+        function buildPopup(name, pop, state) {
             if (name == "Madison") {
-                var colorClass = "red"; // assign a CSS class name to a variable
+                var colorClass = "Wisconsin-red"; // assign a CSS class name to a variable
             } else if (name == "Chicago") {
-                var colorClass = "black"; // assign a CSS class name to a variable
-            } else if (name == "Chicago") {
-                var colorClass = "yellow"; // assign a CSS class name to a variable
+                var colorClass = "Illinois-black"; // assign a CSS class name to a variable
+            } else if (name == "Springfield") {
+                var colorClass = "Illinois-yellow"; // assign a CSS class name to a variable
             }
 
-            return "<div class='" + colorClass + "'><b>" + name + "</b><br>" +
+            return "<div class= '" + colorClass + "'><b>" +name+ "</b><br>" +
                 "<b>population</b>: " + pop.toLocaleString() + "<div>";
         };
 
         var checker = "<div class = '" + colorClass + " '><b>" + name + "</b><br>" + "<b>population</b>: " + pop.toLocaleString() + "<div>";
 
         console.log('checking the string:', checker)
-
-        // var city = cities[i].name;
-        // var pop = props.population;
-        // var state = props.state;
-
-        L.marker(props.coordinates).addTo(map)
-            .bindPopup(popup);
     </script>
 
 </body>
