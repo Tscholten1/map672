@@ -89,18 +89,18 @@
     <script>
         // build your Leaflet map here!
 
-        var mapCenter = L.latLng(43.0731, -89.4012); // defining a variable using L.latLng()
+        var mapCenter = L.latLng(42.0536, -100.4370); // defining a variable using L.latLng()
         var otherCity = L.latLng(41.8781, -87.6298); // coordinates of Chicago
         var distance = mapCenter.distanceTo(otherCity);
         console.log(distance); // will output distance between cities in meters in the browser console
 
         var map = L.map('map', {
             center: mapCenter, // using this variable to center the map
-            zoom: 8
+            zoom: 5
         });
 
         var options = {
-            center: [43.0731, -89.4012], //center on Madison
+            center: [42.0536, -100.4370], //center on Madison
             zoom: 12, // initial zoom level
             minZoom: 2,
             maxZoom: 11, // this value cannot be larger or the same as the initial zoom level!!!
@@ -111,7 +111,6 @@
         map.on('click', function (e) {
             console.log(e.latLng);
         });
-
 
         L.marker([43.0731, -89.4012]).addTo(map); // places a marker on Madison
 
@@ -140,13 +139,93 @@
         var redIguanaLocation = L.latLng(40.7718, -111.9124);
         var redIguanaMarker = L.marker(redIguanaLocation, {
             draggable: true,
-            // opacity: .4
+            opacity: .4
         });
         redIguanaMarker.addTo(map);
-        redIguanaMarker.on('drag', function(e) {
+        redIguanaMarker.bindPopup("The Best Mexican Food in Salt Lake City!!");
+        redIguanaMarker.on('drag', function (e) {
             console.log(e.target.getLatLng());
+            redIguanaMarker.addTo(map);
         });
-        
+
+        var redIguanaLocation = L.latLng(40.7718, -111.9124);
+        var redIguanaCircle = L.circle(redIguanaLocation, 400);
+        redIguanaCircle.addTo(map);
+
+        var redIguanaLocation = L.latLng(40.7718, -111.9124);
+        var redIguanaMarker = L.marker(redIguanaLocation, 400, {
+            color: "#d72b1e", // changes the stroke color
+            fillcolor: "#d72b1e" // changes the fill color
+        });
+        redIguanaCircle.addTo(map);
+
+        var redIguanaLocation = L.latLng(40.7718, -111.9124);
+        var redIguanaCircle = L.circle();
+        redIguanaCircle.setLatLng(redIguanaLocation);
+        redIguanaCircle.setRadius(400);
+        redIguanaCircle.addTo(map);
+
+        var iguanaRestaurants = L.layerGroup();
+        var redIguana = L.circle([40.7718, -111.9124], 400);
+        redIguana.addTo(iguanaRestaurants);
+        var blueIguana = L.circle([40.7657, -111.8930], 300);
+        blueIguana.addTo(iguanaRestaurants);
+        iguanaRestaurants.addTo(map);
+
+        iguanaRestaurants.eachLayer(function (layer) {
+            console.log(layer);
+        });
+
+        iguanaRestaurants.eachLayer(function (layer) {
+            layer.on('mouseover', function (e) {
+                e.target.setStyle({
+                    color: 'yellow',
+                    fillcolor: 'yellow'
+                });
+            });
+
+            layer.on('mouseout', function (e) {
+                e.target.setStyle({
+                    color: '#03f',
+                    fillcolor: '#03f'
+                });
+            });
+        });
+
+        var iguanaRestaurants = L.layerGroup();
+        var redIguanaOptions = {
+            color: 'red',
+            fillColor: 'red'
+        };
+        var blueIguanaOptions = {
+            color: '#03f',
+            fillcolor: '#03f'
+        };
+        var redIguana = L.circle([40.7718, -111.9124], 400, redIguanaOptions);
+        redIguana.color = 'red';
+        redIguana.addTo(iguanaRestaurants);
+        var blueIguana = L.circle([40.7657, -111.8930], 300, blueIguanaOptions);
+        blueIguana.color = 'blue';
+        blueIguana.addTo(iguanaRestaurants);
+        iguanaRestaurants.addTo(map);
+
+        iguanaRestaurants.eachLayer(function (layer) {
+                    layer.on('mouseover', function (e) {
+                        e.target.setStyle({
+                            color: 'yellow',
+                            fillColor: 'yellow'
+                        });
+                    });
+
+                layer.on('mouseout', function (e) {
+                    if (e.target.color == 'red') {
+                        e.target.setStyle(redIguanaOptions);
+                    } else if (e.target.color == 'blue') {
+                        e.target.setStyle(blueIguanaOptions);
+                    }
+                });
+        });
+    
     </script>
 
 </body>
