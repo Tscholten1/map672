@@ -210,22 +210,41 @@
         iguanaRestaurants.addTo(map);
 
         iguanaRestaurants.eachLayer(function (layer) {
-                    layer.on('mouseover', function (e) {
-                        e.target.setStyle({
-                            color: 'yellow',
-                            fillColor: 'yellow'
-                        });
-                    });
-
-                layer.on('mouseout', function (e) {
-                    if (e.target.color == 'red') {
-                        e.target.setStyle(redIguanaOptions);
-                    } else if (e.target.color == 'blue') {
-                        e.target.setStyle(blueIguanaOptions);
-                    }
+            layer.on('mouseover', function (e) {
+                e.target.setStyle({
+                    color: 'yellow',
+                    fillColor: 'yellow'
                 });
+            });
+
+            layer.on('mouseout', function (e) {
+                if (e.target.color == 'red') {
+                    e.target.setStyle(redIguanaOptions);
+                } else if (e.target.color == 'blue') {
+                    e.target.setStyle(blueIguanaOptions);
+                }
+            });
         });
-    
+
+        var clickLocation = map.on('click', function (e) {
+            var clickMarker = new L.marker(e.latlng, {
+                draggable: true,
+                opacity: 0.8
+            });
+            console.log(e.latlng);
+            var distance = redIguana.distanceTo(e.latlng) / 1000;
+            console.log(distance);
+            clickMarker.addTo(map).bindPopup("<b>" + distance.toFixed(2) + "km from Red Iguana").openPopup();
+            clickMarker.on('dragend', ondragend);
+            ondragend();
+
+            function ondragend() {
+                var m = clickMarker.getLatLng();
+                var distanceUpdate = L.latLng(40.7718, -111.9124).distanceTo(m) / 1000;
+                clickMarker.addTo(map).bindPopup("<b>" + distanceUpdate.toFixed(2) + "km from Red Iguana").openPopup();
+            }
+
+        });
     </script>
 
 </body>

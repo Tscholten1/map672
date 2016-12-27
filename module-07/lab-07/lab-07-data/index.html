@@ -73,7 +73,7 @@
 </head>
 
 <body>
-    <h1>This is the title to my awesome map.</h1>
+    <h1>Where are you in relation to the amazing Red Iguana restaurant?.</h1>
 
     <div id='map'></div>
 
@@ -92,20 +92,35 @@
         // map.addLayer(tiles);
 
         var options = {
-            center: [40.74, -110.61],
-            zoom: 6
+            center: [40.7533, -111.9448],
+            zoom: 12
         }
 
         var map = L.map('map', options);
 
         var Esri_WorldStreetMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+            maxZoom: 17,
             attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
         });
 
         map.addLayer(Esri_WorldStreetMap);
 
-
         var redIguana = L.latLng(40.7718, -111.9124);
+        console.log("The center of the map is the Red Iguana Restaurant", redIguana);
+
+        map.on('click', function (e) {
+            var newlatlng = e.latlng;
+            map.setView(newlatlng, 11);
+            console.log("The new center of the map is", newlatlng);
+            var distance = newlatlng.distanceTo(redIguana);
+            console.log("The distance in meters between the new center of the map and the Red Iguana is", distance, "meters");
+            var southWest = map.getBounds().getSouthWest()
+
+            console.log("The southwest bounding coordinates for the new scale level are", southWest);
+
+            var distanceRedIguana = southWest.distanceTo(redIguana);
+            console.log("The distance in meters between the southwest corner of the map and the Red Iguana is", distanceRedIguana, "meters")
+        });
 
         L.marker(redIguana, {
             icon: L.icon({
@@ -114,11 +129,29 @@
             })
         }).addTo(map);
 
-
-
         map.on('click', function (e) {
 
             console.log(e.latlng);
+
+        });
+
+        var clickLocation = map.on('click', function (e) {
+            var clickMarker = new L.marker(e.latlng, {
+                draggable: true,
+                opacity: 0.8
+            });
+            console.log(e.latlng);
+            var distance = redIguana.distanceTo(e.latlng) / 1000;
+            console.log(distance);
+            clickMarker.addTo(map).bindPopup("<b>" + distance.toFixed(2) + "km from Red Iguana").openPopup();
+            clickMarker.on('dragend', ondragend);
+            ondragend();
+
+            function ondragend() {
+                var m = clickMarker.getLatLng();
+                var distanceUpdate = L.latLng(40.7718, -111.9124).distanceTo(m) / 1000;
+                clickMarker.addTo(map).bindPopup("<b>" + distanceUpdate.toFixed(2) + "km from Red Iguana").openPopup();
+            }
 
         });
     </script>
