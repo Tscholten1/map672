@@ -6,6 +6,8 @@
     <title>Lesson 08 Template</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>script>
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
@@ -17,27 +19,33 @@
             font-family: Lato, sans-serif;
             color: #0D0000;
         }
+        
         header {
             padding: 6px 10%;
         }
+        
         h1 {
             display: inline-block;
             margin-right: 20px;
             color: #001323;
         }
+        
         h2 {
             display: inline-block;
             color: #001323;
         }
+        
         #map {
             width: 80%;
             height: 540px;
             margin: 10px auto;
         }
+        
         footer {
             padding: 6px 10%;
             width: 80%;
         }
+        
         p {
             font-size: 1em;
             color: #001323;
@@ -47,8 +55,8 @@
 
 <body>
     <header>
-        <h1>Map Title</h1>
-        <h2>Map Subtitle</h2>
+        <h1>Lesson 8</h1>
+        <h2>Practice Map</h2>
     </header>
 
     <div id='map'></div>
@@ -60,9 +68,124 @@
 
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script>
+        // build your Leaflet map here!
+       
+        //L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        //attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        //}).addTo(map);
 
-      // build your Leaflet map here!
+        var places = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "marker-color": "#7e7e7e",
+                        "marker-size": "medium",
+                        "marker-symbol": "",
+                        "Name": "Tallin",
+                        "Area": "159 square kilometers"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+          24.745330810546875,
+          59.44158425963338
+        ]
+                    }
+    },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "marker-color": "#7e7e7e",
+                        "marker-size": "medium",
+                        "marker-symbol": "",
+                        "Name ": "Haapsalu",
+                        "Area": "12 square kilometers"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+          23.543701171875,
+          58.94425262098131
+        ]
+                    }
+    },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "marker-color": "#7e7e7e",
+                        "marker-size": "medium",
+                        "marker-symbol": "",
+                        "Name": "Parnu",
+                        "Area": "32 square kilometers"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+          24.517364501953125,
+          58.39343586898469
+        ]
+                    }
+    },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "marker-color": "#7e7e7e",
+                        "marker-size": "medium",
+                        "marker-symbol": "",
+                        "Name": "Tartu",
+                        "Area": "39 square kilometers"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+          26.72321319580078,
+          58.375258276849586
+        ]
+                    }
+    }
+  ]
+        };
 
+        var map = L.map('map', {
+            center: [58.73, 25.67], // centered in Estonia
+            zoom: 7
+        });
+
+        var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        });
+        tiles.addTo(map);
+
+        /* var placesLeaflet = L.geoJson(places).addTo(map);
+         console.log(places); 
+          console.log(placesLeaflet);*/
+
+        var placesLeaflet = L.geoJson(places, {
+            pointToLayer: function (feature, latlng) {
+                return L.circle(latlng, 20000);
+            }
+        }).addTo(map);
+
+        /*var placesLeaflet = L.geoJson(places, {
+            pointToLayer : function(f, 11) {
+                console.log(f,11);
+                return L.circle(11, 2000);
+            }
+        }).addTo(Map);*/
+        
+        /*var placesLeaflet = L.geoJson(places, {
+        pointToLayer : function(feature, latlng) {
+        console.log(feature);
+        return L.circle(latlng, 2000);
+        }
+        }).addTo(map;*/
+        
+
+        // javascript
     </script>
 
 </body>
