@@ -59,45 +59,39 @@
         <h2>Practice Map--Major U.S. Power Plants</h2>
     </header>
 
-    <div id='map'>
-        < /div>
+    <div id='map'></div>
 
-    < footer>
-    < p> Tom Scholten
-    < /p>
-    < p> This map shows the locations of solar, geothermal, and biomass power plants in the U.S..
-    < /p>
-    < /footer>
+    <footer>
+        <p> Tom Scholten
+
+            <p> This map shows the locations of solar, geothermal, and biomass power plants in the U.S..
+
+    </footer>
 
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js">
-    <script src="power-plants.js">
+        < script src = "power-plants.js" >
     </script>
     <script>
+        // build your Leaflet map here!
 
-    
-    // build your Leaflet map here!
-
-    var map = L.map('map', {
-    center: [36, -94], // Centered on the continental U.S.
-    zoom: 4,
+        var map = L.map('map', {
+            center: [36, -94], // Centered on the continental U.S.
+            zoom: 4,
         });
 
-    var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-    subdomains: 'abcd',
-    maxZoom: 19
-    });
-    
-    tiles.addTo(map);
-   
+        var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        });
 
-    // add plants to the map using circleMarker
-    // L.geoJson(plants).addTo(map);
-        
-        
-    // Adding a filter using the L.geoJson() method's filter option
-        
-            
+        tiles.addTo(map);
+
+        // add plants to the map using circleMarker
+        L.geoJson(plants).addTo(map);
+
+
+        // Adding a filter using the L.geoJson() method's filter option
     </script>
 
 </body>
