@@ -5,7 +5,7 @@
     <meta charset=utf-8 />
     <title>Lesson 08 Template</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' /> //
-    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>script>
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
@@ -68,11 +68,9 @@
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script>
         // build your Leaflet map here!
-
         //L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         //attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         //}).addTo(map);
-
         var places = {
             "type": "FeatureCollection",
             "features": [
@@ -146,30 +144,27 @@
     }
   ]
         };
-
         var map = L.map('map', {
             center: [58.73, 25.67], // centered in Estonia
             zoom: 7
         });
-
         var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
             subdomains: 'abcd',
             maxZoom: 19
         });
         tiles.addTo(map);
-        
+
         // console.log(places)
         var placesLeaflet = L.geoJson(places).addTo(map); //adds geojson markers to map
-        
+
         var placesLeaflet = L.geoJson(places, { //changes geojson points to layers
-            pointToLayer : function(feature, latlng) {
+            pointToLayer: function (feature, latlng) {
                 console.log(feature);
                 return L.circle(latlng, 20000);
                 return L.circle(latlng, feature.properties.size * 100);
             }
-         }).addTo(map);
-
+        }).addTo(map);
     </script>
 
 </body>

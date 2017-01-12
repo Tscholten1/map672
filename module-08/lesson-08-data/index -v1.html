@@ -4,10 +4,11 @@
 <head>
     <meta charset=utf-8 />
     <title>Lesson 08 Template</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' /> //
-    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>script>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
+    <link rel="stylesheet" href="http://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
     <style>
@@ -15,7 +16,7 @@
             margin: 0;
             padding: 0;
             background: whitesmoke;
-            font-family: Lato, sans-serif;
+            font - family: Lato, sans - serif;
             color: #0D0000;
         }
         
@@ -26,27 +27,27 @@
         h1 {
             display: inline-block;
             margin-right: 20px;
-            color: #001323;
+            color: # 001323;
         }
         
         h2 {
-            display: inline-block;
+            display: inline - block;
             color: #001323;
         }
         
-        #map {
+        # map {
             width: 80%;
             height: 540px;
             margin: 10px auto;
         }
         
         footer {
-            padding: 6px 10%;
+            padding: 6px 10 %;
             width: 80%;
         }
         
         p {
-            font-size: 1em;
+            font - size: 1e m;
             color: #001323;
         }
     </style>
@@ -55,121 +56,48 @@
 <body>
     <header>
         <h1>Lesson 8</h1>
-        <h2>Practice Map--Four Cities in Estonia</h2>
+        <h2>Practice Map--Major U.S. Power Plants</h2>
     </header>
 
-    <div id='map'></div>
+    <div id='map'>
+        < /div>
 
-    <footer>
-        <p>Tom Scholten</p>
-        <p>Additional information about the data and map goes here.</p>
-    </footer>
+    < footer>
+    < p> Tom Scholten
+    < /p>
+    < p> This map shows the locations of solar, geothermal, and biomass power plants in the U.S..
+    < /p>
+    < /footer>
 
-    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js">
+    <script src="power-plants.js">
+    </script>
     <script>
-        // build your Leaflet map here!
 
-        //L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        //attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        //}).addTo(map);
+    
+    // build your Leaflet map here!
 
-        var places = {
-            "type": "FeatureCollection",
-            "features": [
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "marker-color": "#7e7e7e",
-                        "marker-size": "medium",
-                        "marker-symbol": "",
-                        "Name": "Tallin",
-                        "Area": "159 square kilometers"
-                    },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-          24.745330810546875,
-          59.44158425963338
-        ]
-                    }
-    },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "marker-color": "#7e7e7e",
-                        "marker-size": "medium",
-                        "marker-symbol": "",
-                        "Name ": "Haapsalu",
-                        "Area": "12 square kilometers"
-                    },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-          23.543701171875,
-          58.94425262098131
-        ]
-                    }
-    },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "marker-color": "#7e7e7e",
-                        "marker-size": "medium",
-                        "marker-symbol": "",
-                        "Name": "Parnu",
-                        "Area": "32 square kilometers"
-                    },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-          24.517364501953125,
-          58.39343586898469
-        ]
-                    }
-    },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "marker-color": "#7e7e7e",
-                        "marker-size": "medium",
-                        "marker-symbol": "",
-                        "Name": "Tartu",
-                        "Area": "39 square kilometers"
-                    },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-          26.72321319580078,
-          58.375258276849586
-        ]
-                    }
-    }
-  ]
-        };
-
-        var map = L.map('map', {
-            center: [58.73, 25.67], // centered in Estonia
-            zoom: 7
+    var map = L.map('map', {
+    center: [36, -94], // Centered on the continental U.S.
+    zoom: 4,
         });
 
-        var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-            subdomains: 'abcd',
-            maxZoom: 19
-        });
-        tiles.addTo(map);
-        
-        // console.log(places)
-        var placesLeaflet = L.geoJson(places).addTo(map); //adds geojson markers to map
-        
-        var placesLeaflet = L.geoJson(places, { //changes geojson points to layers
-            pointToLayer : function(feature, latlng) {
-                console.log(feature);
-                return L.circle(latlng, 20000);
-                return L.circle(latlng, feature.properties.size * 100);
-            }
-         }).addTo(map);
+    var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+    });
+    
+    tiles.addTo(map);
+   
 
+    // add plants to the map using circleMarker
+    L.geoJson(plants).addTo(map);
+        
+        
+    // Adding a filter using the L.geoJson() method's filter option
+        
+            
     </script>
 
 </body>
