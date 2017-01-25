@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
-    
+
     <style>
         body {
             margin: 0;
@@ -18,27 +18,33 @@
             font-family: Lato, sans-serif;
             color: #0D0000;
         }
+        
         header {
             padding: 6px 10%;
         }
+        
         h1 {
             display: inline-block;
             margin-right: 20px;
             color: #001323;
         }
+        
         h2 {
             display: inline-block;
             color: #001323;
         }
+        
         #map {
             width: 80%;
             height: 540px;
             margin: 10px auto;
         }
+        
         footer {
             padding: 6px 10%;
             width: 80%;
         }
+        
         p {
             font-size: 1em;
             color: #001323;
@@ -61,44 +67,57 @@
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script src="power-plants.js"></script>
     <script>
+        var map = L.map('map', {
+            center: [36, -94],
+            zoom: 4,
+        });
 
-      var map = L.map('map', {
-          center: [36,-94],
-          zoom: 4,
-      });
+        var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        });
 
-      var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-          subdomains: 'abcd',
-          maxZoom: 19
-      });
+        tiles.addTo(map);
+        
+        plants.features.sort(function (a, b) {
+            return b.properties.capacity_mw - a.properties.capacity_mw
+        });
+        
+        //function that will include the geojson(plants) and geojson options (pointToLayer, inEachFeature, filter)
+        L.geoJson(plants, {
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, {
+                    color: 'orange',
+                    weight: 1,
+                    fillColor: 'yellow',
+                    fillOpacity: .8,
+                    //calling getRadius from below for value of radius
+                    radius: getRadius(feature.properties.capacity_mw)
+                });
+            },
+            onEachFeature: function(feature,layer) {
+                // code here...sets eventListener when mouseover
+                layer.on('mouseover', function() {
+                // method to set a style when above action is taken with style input
+                    layer.setStyle({
+                    });
+                    layer.on('mouseout', function() {
+                        //code goes here
+                    });
+                }
+                    )
+            }
+        }).addTo(map);
 
-      tiles.addTo(map);
-
-    plants.features.sort(function(a,b) {
-        return b.properties.capacity_mw - a.properties.capacity_mw
-    });
-      L.geoJson(plants, {
-          pointToLayer: function(feature,latlng) {
-              return L.circleMarker(latlng, {
-                 color: 'orange',
-                 weight: 1,
-                 fillColor: 'yellow',
-                 fillOpacity: .8,
-                 // radius: feature.properties.capacity_mw * .01
-                 radius: getRadius(feature.properties.capacity_mw)
-              });
-          },
-          onEachFeature : function(feature,layer) {
-              // code here
-          }
-      }).addTo(map);
-
+        // function which returns the radius of power plant radius, which is used as one of the options in circleMaker
         function getRadius(area) {
             var radius = Math.sqrt(area/Math.PI);
             return radius * .6;
         }
 
+    // radius: getradius(feature.properties.capacity_mw),
+        
     </script>
 
 </body>
