@@ -54,15 +54,15 @@
 
 <body>
     <header>
-        <h1>Map Title</h1>
-        <h2>Map Subtitle</h2>
+        <h1>Distribution of Renewable Energy Production Sites in the U.S.</h1>
+        <h2></h2>
     </header>
 
     <div id='map'></div>
 
     <footer>
-        <p>Map authored by YOUR NAME</p>
-        <p>Additional information about the data and map goes here.</p>
+        <p>Map authored by Tom Scholten</p>
+        <p>Sources: OpenStreetMap and Leaflet.</p>
     </footer>
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script src="power-plants.js"></script>
@@ -92,69 +92,47 @@
                     weight: 1,
                     fillColor: 'yellow',
                     fillOpacity: .8,
-                    //calling getRadius from below for value of radius
+                    //calling getRadius from below for value of radius on line 134
                     radius: getRadius(feature.properties.capacity_mw)
                 });
             },
-           
-            filter: function(feature, layer) {
-                    if (feature.properties.fuel_source.Wind) {
-                        return feature; // filters for wind turbines
-                    }
-                },
-            
-            onEachFeature: function (feature, layer) {
-            // code here...sets eventListener when mouseover
-            // onEachFeature:function(feature,layer){
-                    layer.on('mouseover', function (){
-                        layer.setStyle({
-                            color: 'blue',
-                            weight: 5,
-                            fillColor: 'yellow',
-                            fillOpacity: 1
-                        }); // changes to blue/yellow with mouseover
-                    });
-                    layer.on('mouseout',function(){
-                        layer.setStyle({
-                            color: 'green',
-                            weight: 1,
-                            fillColor: 'white',
-                            fillOpacity: 5
-                        }); // reverts to default color with mouseout 
-                    });
-                    layer.on('click', function(){
-                    layer.bindPopup("<b>Plant Name: "+feature.properties.plant_name+"</b><br>"+"Installed Capacity: "+ feature.properties.capacity_mw+"Megawatts").openPopup(plants.properties);
-                    }); // creates a popup of data on a mouseclick
+
+            filter: function (feature, layer) {
+                if (feature.properties.fuel_source.Wind) {
+                    return feature; // filters for wind turbines
                 }
-            }).addTo(map); 
-            console.log(plants);
+            },
 
-                    
-        //                layer.on('mouseover', function () {
-        //                        // code goes....method to set a style when above action is taken with style input
-        //                        layer.setStyle({
-        //                            fillColor: 'red'
-        //                        });
-        //                    });
-        //                    layer.setStyle({});
-        //                    layer.on('mouseout', function () {
-        //                        // code goes here
-        //                        layer.setStyle({
-        //                            fillcolor: 'yellow'
-        //                        });
-        //                    });
-        //                }
-        // method which includes popup for all geojson features.
-        // layer.bindPopup('<b>' + feature.properties.plant_name + '</b><br>' + feature.properties.capacity_mw + ' MW <br> 
-        // <b>' + feature.properties.fuel_source.Hydro + '</b>; ' + '');
-        // }
-        // layer.bindPopup(popup);
+            onEachFeature: function (feature, layer) {
+                // code here...sets eventListener when mouseover
+                // onEachFeature:function(feature,layer){
+                layer.on('mouseover', function () {
+                    layer.setStyle({
+                        color: 'blue',
+                        weight: 5,
+                        fillColor: 'pink',
+                        fillOpacity: 1
+                    }); // changes to blue/yellow with mouseover
+                });
+                layer.on('mouseout', function () {
+                    layer.setStyle({
+                        color: 'orange',
+                        weight: 1,
+                        fillColor: 'yellow',
+                        fillOpacity: 5
+                    }); // reverts to default color with mouseout 
+                });
+                layer.on('click', function () {
+                    layer.bindPopup("<b>Plant Name: " + feature.properties.plant_name + "</b><br>" + "Installed Capacity: " + feature.properties.capacity_mw + "Megawatts").openPopup(plants.properties);
+                }); // creates a popup of data on a mouseclick
+            }
+        }).addTo(map);
+        console.log(plants);
 
-        // }).addTo(map);
 
         // function which returns the radius of power plant radius, which is used as one of the options in circleMaker
         function getRadius(area) {
-            var radius = Math.sqrt(area/Math.PI);
+            var radius = Math.sqrt(area / Math.PI);
             return radius * .6;
         }
 
