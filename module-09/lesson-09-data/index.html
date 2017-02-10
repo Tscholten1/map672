@@ -99,6 +99,39 @@
             }
         }).addTo(map);
 
+//        map.on('click', function(e) {
+//            console.log(e.latlng)   // access to the click coordinates
+//            hydroLayer.eachLayer(function(layer) {
+//                console.log(layer.getLatLng());  // access to the layer coordinates
+//            });
+//        });
+        
+        map.on('click', function(e) {
+            hydroLayer.eachLayer(function(layer) {
+                var distance = e.latlng.distanceTo(layer.getLatLng());
+                console.log(distance);  // distance in meters between click point
+            });
+        });
+        
+        map.on('click', function(e) {
+            hydroLayer.eachLayer(function(layer) {
+                var distance = e.latlng.distanceTo(layer.getLatLng())/1000; // distance as km
+                
+                if(distance > 500) {
+                    layer.setStyle({
+                        stroke: false,
+                        fill: false
+                    });
+                } else {
+                    layer.setStyle({
+                        stroke: true,
+                        fill: true
+                    });
+                }
+            });
+        });
+            
+        
         // create a L.geoJson layer for coal
         var coalLayer = L.geoJson(plants, {
             pointToLayer: function(feature, latlng) {
