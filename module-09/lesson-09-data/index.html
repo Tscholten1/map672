@@ -127,10 +127,13 @@
                         stroke: true,
                         fill: true
                     });
+                    layer.bindPopup("I am <b>"+distance.toLocaleString()+
+                                   "km</b><br> from the click point.");
                 }
             });
         });
-            
+        
+        
         
         // create a L.geoJson layer for coal
         var coalLayer = L.geoJson(plants, {
