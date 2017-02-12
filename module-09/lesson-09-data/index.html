@@ -53,7 +53,7 @@
 
 <body>
     <header>
-        <h1>Map Title</h1>
+        <h1>Hydro Electrik Power Plants</h1>
         <h2>Map Subtitle</h2>
     </header>
 
@@ -140,7 +140,12 @@
             pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, {
                     // options here
-                    color: '#ff0000'
+                    color: '#ff0000',
+                    fillColor: '#ff0000',
+                    weight: 1,
+                    stroke: 1,
+                    fillOpacity: .8,
+                    radius: getRadius(feature.properties.fuel_source.Coal)
                 })
             },
             filter: function(feature){
@@ -150,9 +155,9 @@
             }
         }).addTo(map);
 
-
-
-
+        
+        
+        
         function getRadius(val) {
             var radius = Math.sqrt(val / Math.PI);
             return radius * .8;
@@ -161,11 +166,33 @@
 
        map.on('click', function (e) {
            console.log(e.latlng) // access to the click coordinates
-           hydroLayer.eachLayer(function (layer) {
-               console.log(layer.getLatLng()); // access to the layer coordinates
+           coalLayer.eachLayer(function(layer) {
+               var distance = e.latlng.distanceTo(layer.getLatLng());
+               console.log(distance); // access to the layer coordinates
            });
        });
 
+       map.on('click', function(e) {
+           coalLayer.eachLayer(function(layer) {
+               var distance = e.latlng.distanceTo(layer.getLatLng())/1000; // distance as km
+               
+               if(distance > 500) {
+                    layer.setStyle({
+                        stroke: false,
+                        fill: false
+                    });
+                } else {
+                    layer.setStyle({
+                        stroke: true,
+                        fill: true
+                    });
+                    layer.bindPopup("I am <b>"+distance.toLocaleString()+
+                                   "km</b><br> from the click point.");
+                }
+           });
+       });
+    
+        
     </script>
 
 </body>
