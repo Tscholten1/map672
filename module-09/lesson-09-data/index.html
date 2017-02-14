@@ -234,7 +234,13 @@
             }
         }).addTo(map);
         
+        var sourceLayers = {
+            "Hydro": hydroLayer,
+            "wind": windLayer,
+            "Coal": coalLayer
+        }
         
+        L.control.layers(null, sourceLayers, { collapsed:false }).addTo(map);
         
         
     </script>
