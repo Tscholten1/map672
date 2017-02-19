@@ -96,15 +96,15 @@
                 if (feature.properties.fuel_source.Hydro) {
                     return feature;
                 }
-            }
+            },
         }).addTo(map);
 
-        map.on('click', function(e) {
-            hydroLayer.eachLayer(function(layer) {
-                var distance = e.latlng.distanceTo(layer.getLatLng());
-                console.log(distance);  // distance in meters between click point
-            });
-        });
+//        map.on('click', function(e) {
+//            hydroLayer.eachLayer(function(layer) {
+//                var distance = e.latlng.distanceTo(layer.getLatLng());
+//                console.log(distance);  // distance in meters between click point
+//            });
+//        });
         
         map.on('click', function(e) {
             hydroLayer.eachLayer(function(layer) {
@@ -140,7 +140,7 @@
                 })
             },
             filter: function(feature){
-                if (feature.properties.fuel_source.Coal) {
+                if (feature.properties.fuel_source.Wind) {
                     return feature;
                 }
             }
@@ -180,12 +180,12 @@
        });
     
         // create a L.geoJson layer for solar
-        var windLayer = L.geoJson(plants, {
+        var solarLayer = L.geoJson(plants, {
             pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, {
                     // options here
                     color: '#ffff99',
-                    fillColor: '#ffff993',
+                    fillColor: '#ffff99',
                     weight: 1,
                     stroke: 1,
                     fillOpacity: .8,
@@ -203,14 +203,6 @@
             var radius = Math.sqrt(val / Math.PI);
             return radius * .8;
         }
-
-       map.on('click', function (e) {
-           console.log(e.latlng) // access to the click coordinates
-           solarLayer.eachLayer(function(layer) {
-               var distance = e.latlng.distanceTo(layer.getLatLng());
-               console.log(distance); // access to the layer coordinates
-           });
-       });
 
        map.on('click', function(e) {
            solarLayer.eachLayer(function(layer) {
@@ -237,75 +229,13 @@
             stroke: 1,
             fillOpacity: .8
         }
-        
-        var hydroLayer = L.geoJson(plants, {
-            pointToLayer: function(feature,latlng) {
-                return L.circleMarker(latlng, commonStyles);
-            },
-            filter: function(feature) {
-             if(feature.properties.fuel_source.Hydro) {
-                 return feature;
-             }   
-            },
-            style: function(feature) {
-            return {
-            color: '#1f78b4',
-            fillcolor: '#1f78b4',
-            radius: getRadius(feature.properties.fuel_source.Hydro)
-        }
-        }  
-        }).addTo(map);
-        
-        var windLayer = L.geoJson(plants, {
-            pointToLayer: function(feature,latlng) {
-            return L.circleMarker(latlng, commonStyles);
-        },
-        filter: function(feature) {
-            if(feature.properties.fuel_source["Wind"]) {
-                return feature;
-            }
-        },
-        Style: function(feature) {
-                return {
-                    color: '#a6cee3',
-                    fillcolor: '#a6cee3',
-                    radius: getRadius(feature.properties.fuel_source["wind"])
-                }
-            }
-        }).addTo(map);
-        
-        var solarLayer = L.geoJson(plants, {
-            pointToLayer: function(feature,latlng) {
-            return L.circleMarker(latlng, commonStyles);
-        },
-        filter: function(feature) {
-            if(feature.properties.fuel_source["Solar"]) {
-                return feature;
-            }
-        },
-        Style: function(feature) {
-                return {
-                    color: '#ffff99',
-                    fillcolor: '#ffff99',
-                    radius: getRadius(feature.properties.fuel_source["solar"])
-                }
-            }
-        }).addTo(map);
-        
+    
         var sourcesLayer = {
             "Hyrdo": hydroLayer,
             "Wind": windLayer,
             "Solar": solarLayer
         }
-        
-//        L.control.layers(null, sourceLayers, { collapsed:false }).addTo(map);
-        
-        var hydroLayer = L.geoJson(plants, {
-            pointToLayer: function(feature,latlng) {
-                return L.circleMarker(latlng, commonStyles);
-            },
-        })
-        
+    
         var sourceLayers = {
            "<b style='color:#1f78b4'>Hydro</b>": hydroLayer,
            "<b style='color:#a6cee3'>Wind</b>": windLayer,
