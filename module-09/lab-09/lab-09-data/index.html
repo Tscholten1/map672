@@ -244,7 +244,7 @@
         
     var layerInfo = {
            coallayer: {source: "Coal", color: '#a6cee3'},
-           natural_gaslayer: {source: "Natural Gas", color: '#F7FF00'},
+           natural_gaslayer: {source: "Natural_Gas", color: '#F7FF00'},
            nuclearlayer: {source: "Nuclear", color: '#FF28B8'}
        };
         
@@ -271,7 +271,13 @@
         return radius * .8;
     }
       
-    
+     var sourcesLayer = {
+            "Coal": coalLayer,
+            "Natural Gas": natural_gasLayer,
+            "Nuclear": nuclearLayer
+        }
+        
+        
     var sourceLayers = {
         "<b style='color:#a6cee3'>Coal</b>": coalLayer,
         "<b style='color:#F7FF00'>Natural Gas</b>": natural_gasLayer,
