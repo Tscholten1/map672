@@ -74,13 +74,11 @@
       });
 
       tiles.addTo(map);
-<<<<<<< HEAD
-        
+// <<<<<<< HEAD 
     // create a L.geoJson layer for COAL
-=======
 
         // create a L.geoJson layer for COAL
->>>>>>> origin/master
+// >>>>>>> origin/master
         var coalLayer = L.geoJson(plants, {
             pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, {
@@ -127,17 +125,13 @@
                 }
            });
        });
-<<<<<<< HEAD
+// <<<<<<< HEAD
         
         
-         // create a L.geoJson layer for Natural Gas
-        var Natural_GasLayer = L.geoJson(plants, {
-=======
+        // create a L.geoJson layer for Natural Gas
+       // var Natural_GasLayer = L.geoJson(plants, {
 
-
-         // create a L.geoJson layer for NATURAL GAS
-        var natural_gasLayer = L.geoJson(plants, {
->>>>>>> origin/master
+        var Natural_GasLayer = L.geoJson (plants, {
             pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, {
                     // options here
@@ -146,19 +140,19 @@
                     weight: 1,
                     stroke: 1,
                     fillOpacity: .8,
-<<<<<<< HEAD
+
                     radius: getRadius(feature.properties.fuel_source.Natural_Gas)
                 })
             },
             filter: function(feature){
                 if (feature.properties.fuel_source.Natural_Gas) {
-=======
-                    radius: getRadius(feature.properties.fuel_source["Natural Gas"])
-                })
+
+                    radius: getRadius(feature.properties.fuel_source["Natural_Gas"])
+                }
             },
             filter: function(feature){
-                if (feature.properties.fuel_source["Natural Gas"]) {
->>>>>>> origin/master
+                if (feature.properties.fuel_source["Natural_Gas"]) {
+// >>>>>>> origin/master
                     return feature;
                 }
             }
@@ -246,12 +240,12 @@
             weight: 1,
             stroke: 1,
             fillOpacity: .8
-<<<<<<< HEAD
+// <<<<<<< HEAD
         }   
         
     var layerInfo = {
            coallayer: {source: "Coal", color: '#a6cee3'},
-           Natural_Gaslayer: {source: "Natural Gas", color: '#F7FF00'},
+           Natural_Gaslayer: {source: "Natural_Gas", color: '#F7FF00'},
            nuclearlayer: {source: "Nuclear", color: '#FF28B8'}
        };
         
@@ -269,8 +263,8 @@
             fillcolor: layerInfo[layer].color,
             radius: getRadius(feature.properties.fuel_source[layerInfo[layer].source])
             }
-=======
->>>>>>> origin/master
+// =======
+// >>>>>>> origin/master
         }
 
     // var layerInfo = {
@@ -301,22 +295,17 @@
         var radius = Math.sqrt(val / Math.PI);
         return radius * .8;
     }
-<<<<<<< HEAD
       
      var sourceLayer = {
             "Coal": coalLayer,
-            "Natural Gas": Natural_GasLayer,
+            "Natural_Gas": Natural_GasLayer,
             "Nuclear": nuclearLayer
         }
         
-        
-=======
-
-
->>>>>>> origin/master
+// >>>>>>> origin/master
     var sourceLayers = {
         "<b style='color:#a6cee3'>Coal</b>": coalLayer,
-        "<b style='color:#F7FF00'>Natural Gas</b>": Natural_GasLayer,
+        "<b style='color:#F7FF00'>Natural_Gas</b>": Natural_GasLayer,
         "<b style='color:#FF28B8'>Nuclear</b>": nuclearLayer
     }
 
