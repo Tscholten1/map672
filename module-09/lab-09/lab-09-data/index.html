@@ -75,7 +75,7 @@
 
       tiles.addTo(map);
         
-        // create a L.geoJson layer for COAL
+    // create a L.geoJson layer for COAL
         var coalLayer = L.geoJson(plants, {
             pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, {
@@ -129,8 +129,8 @@
        });
         
         
-         // create a L.geoJson layer for NATURAL GAS
-        var natural_gasLayer = L.geoJson(plants, {
+         // create a L.geoJson layer for Natural Gas
+        var Natural_GasLayer = L.geoJson(plants, {
             pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, {
                     // options here
@@ -139,11 +139,11 @@
                     weight: 1,
                     stroke: 1,
                     fillOpacity: .8,
-                    radius: getRadius(feature.properties.fuel_source.natural_gas)
+                    radius: getRadius(feature.properties.fuel_source.Natural_Gas)
                 })
             },
             filter: function(feature){
-                if (feature.properties.fuel_source.natural_gas) {
+                if (feature.properties.fuel_source.Natural_Gas) {
                     return feature;
                 }
             }
@@ -156,14 +156,14 @@
 
        map.on('click', function (e) {
            console.log(e.latlng) // access to the click coordinates
-           natural_gasLayer.eachLayer(function(layer) {
+           hydroLayer.eachLayer(function(layer) {
                var distance = e.latlng.distanceTo(layer.getLatLng());
                console.log(distance); // access to the layer coordinates
            });
        });
 
        map.on('click', function(e) {
-           natural_gasLayer.eachLayer(function(layer) {
+           hydroLayer.eachLayer(function(layer) {
                var distance = e.latlng.distanceTo(layer.getLatLng())/1000; // distance as km
                
                if(distance > 500) {
@@ -244,7 +244,7 @@
         
     var layerInfo = {
            coallayer: {source: "Coal", color: '#a6cee3'},
-           natural_gaslayer: {source: "Natural_Gas", color: '#F7FF00'},
+           Natural_Gaslayer: {source: "Natural Gas", color: '#F7FF00'},
            nuclearlayer: {source: "Nuclear", color: '#FF28B8'}
        };
         
@@ -271,16 +271,16 @@
         return radius * .8;
     }
       
-     var sourcesLayer = {
+     var sourceLayer = {
             "Coal": coalLayer,
-            "Natural Gas": natural_gasLayer,
+            "Natural Gas": Natural_GasLayer,
             "Nuclear": nuclearLayer
         }
         
         
     var sourceLayers = {
         "<b style='color:#a6cee3'>Coal</b>": coalLayer,
-        "<b style='color:#F7FF00'>Natural Gas</b>": natural_gasLayer,
+        "<b style='color:#F7FF00'>Natural Gas</b>": Natural_GasLayer,
         "<b style='color:#FF28B8'>Nuclear</b>": nuclearLayer
     }
         
