@@ -134,11 +134,11 @@
                     weight: 1,
                     stroke: 1,
                     fillOpacity: .8,
-                    radius: getRadius(feature.properties.fuel_source.natural_gas)
+                    radius: getRadius(feature.properties.fuel_source["Natural Gas"])
                 })
             },
             filter: function(feature){
-                if (feature.properties.fuel_source.natural_gas) {
+                if (feature.properties.fuel_source["Natural Gas"]) {
                     return feature;
                 }
             }
@@ -228,40 +228,34 @@
             fillOpacity: .8
         }
 
-    var layerInfo = {
-           coallayer: {source: "Coal", color: '#a6cee3'},
-           natural_gaslayer: {source: "Natural_Gas", color: '#F7FF00'},
-           nuclearlayer: {source: "Nuclear", color: '#FF28B8'}
-       };
+    // var layerInfo = {
+    //        coallayer: {source: "Coal", color: '#a6cee3'},
+    //        natural_gaslayer: {source: "Natural_Gas", color: '#F7FF00'},
+    //        nuclearlayer: {source: "Nuclear", color: '#FF28B8'}
+    //    };
 
-       var geoJsonLayers = {};
-
-       for(var layer in layerInfo) {
-           geoJsonLayers[layer] = L.geoJson(plants, {
-            pointToLayer: function(feature,latlng) {
-            return L.circleMarker(latlng, commonStyles);
-        },
-
-        style: function(feature) {
-            return {
-            color: layerInfo[layer].color,
-            fillcolor: layerInfo[layer].color,
-            radius: getRadius(feature.properties.fuel_source[layerInfo[layer].source])
-            }
-        }
-        }).addTomap;
-       }
+    //    var geoJsonLayers = {};
+       //
+    //    for(var layer in layerInfo) {
+    //        geoJsonLayers[layer] = L.geoJson(plants, {
+    //         pointToLayer: function(feature,latlng) {
+    //         return L.circleMarker(latlng, commonStyles);
+    //     },
+       //
+    //     style: function(feature) {
+    //         return {
+    //         color: layerInfo[layer].color,
+    //         fillcolor: layerInfo[layer].color,
+    //         radius: getRadius(feature.properties.fuel_source[layerInfo[layer].source])
+    //         }
+    //     }
+    //     }).addTomap;
+    //    }
 
     function getRadius(val) {
         var radius = Math.sqrt(val / Math.PI);
         return radius * .8;
     }
-
-     var sourcesLayer = {
-            "Coal": coalLayer,
-            "Natural Gas": natural_gasLayer,
-            "Nuclear": nuclearLayer
-        }
 
 
     var sourceLayers = {
