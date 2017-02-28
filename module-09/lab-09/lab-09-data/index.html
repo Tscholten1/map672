@@ -48,7 +48,7 @@
 <body>
     <header>
         <h1>U.S. Electric Power Generation</h1>
-        <h2>Comparison of Power Generation in the U.S. by fuel source</h2>
+        <h2>Comparison of Power Generation in the U.S. by fuel source (coal, solary, nuclear)</h2>
     </header>
 
     <div id='map'></div>
@@ -111,7 +111,12 @@ function getRadius(val) {
 
        map.on('click', function(e) {
            coalLayer.eachLayer(function(layer) {
-               var distance = e.latlng.distanceTo(layer.getLatLng())/1000; // distance as km   
+               var distance = e.latlng.distanceTo(layer.getLatLng())/500; // distance as km  
+               layer.bindPopup("Plant Name: " + layer.feature.properties.plant_name
+                               + "<br>Fuel Source: " + getFuelSource(layer.feature)
+                               + "<br> Distance from click: " + distance.toLocaleString()
+                               + " km" + "<br>Capacity: " + layer.feature.properties.capacity_mw +
+                               
         
  if(distance > 500) {
         layer.setStyle({
@@ -166,7 +171,7 @@ function getRadius(val) {
 
        map.on('click', function(e) {
            SolarLayer.eachLayer(function(layer) {
-               var distance = e.latlng.distanceTo(layer.getLatLng())/1000; // distance as km   
+               var distance = e.latlng.distanceTo(layer.getLatLng())/500; // distance as km   
         
  if(distance > 500) {
         layer.setStyle({
