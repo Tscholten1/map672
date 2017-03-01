@@ -48,7 +48,7 @@
 <body>
     <header>
         <h1>U.S. Electric Power Generation</h1>
-        <h2>Comparison of Power Generation in the U.S. by fuel source (coal, solary, nuclear)</h2>
+        <h2>Comparison of Power Generation in the U.S. by fuel source (coal, solar, nuclear)</h2>
     </header>
 
     <div id='map'></div>
@@ -111,11 +111,11 @@ function getRadius(val) {
 
        map.on('click', function(e) {
            coalLayer.eachLayer(function(layer) {
-               var distance = e.latlng.distanceTo(layer.getLatLng())/500; // distance as km  
-               layer.bindPopup("Plant Name: " + layer.feature.properties.plant_name
-                               + "<br>Fuel Source: " + getFuelSource(layer.feature)
-                               + "<br> Distance from click: " + distance.toLocaleString()
-                               + " km" + "<br>Capacity: " + layer.feature.properties.capacity_mw +
+               var distance = e.latlng.distanceTo(layer.getLatLng())/1000; // distance as km  
+               layer.bindPopup("Plant Name: " + layer.feature.properties.plant_name)
+//                               + "<br>Fuel Source: " + getFuelSource(layer.feature)
+//                               + "<br> Distance from click: " + distance.toLocaleString()
+//                               + " km" + "<br>Capacity: " + layer.feature.properties.capacity_mw +
                                
         
  if(distance > 500) {
@@ -237,14 +237,13 @@ function getRadius(val) {
 });       
 // }).addTomap; 
         
-//
 //} 
 //function getradius(val) { 
 
 // var layerInfo = { 
-// coallayer: {source: "Coal", color: '#a6cee3'}, 
-// natural_gaslayer: {source: "Natural_Gas", color: '#F7FF00'}, 
-// nuclearlayer: {source: "Nuclear", color: '#FF28B8'} 
+// coallayer: {source: "Coal", color: '#775c5c'}, 
+// solarlayer: {source: "Solar", color: '#F2FA08'}, 
+// nuclearlayer: {source: "Nuclear", color: '#FA1008'} 
 // }; 
 // var geoJsonLayers = {}; 
 
@@ -274,9 +273,9 @@ function getRadius(val) {
 //} 
 //
 var sourceLayers = { 
-"<b style='color:#a6cee3'>Coal</b>": coalLayer, 
-"<b style='color:#F7FF00'>Natural Gas</b>": SolarLayer, 
-"<b style='color:#FF28B8'>Nuclear</b>": NuclearLayer 
+"<b style='color:#775c5c'>Coal</b>": coalLayer, 
+"<b style='color:#F2FA08'>Solar</b>": SolarLayer, 
+"<b style='color:#FA1008'>Nuclear</b>": NuclearLayer 
 } 
 
 L.control.layers(null, sourceLayers, { collapsed:false }).addTo(map); 
