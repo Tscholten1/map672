@@ -155,9 +155,9 @@
                 var distance = e.latlng.distanceTo(layer.getLatLng()) / 1000; // distance as km
 
                 var popup = "Plant Name: " + layer.feature.properties.plant_name +
-                            "<br>Fuel Source: " + getFuelSource(layer.feature) +
-                            "<br> Distance from click: " + distance.toLocaleString() +
-                            " km" + "<br>Capacity: " + layer.feature.properties.capacity_mw +
+                            "<br>Fuel Source: " + layer.feature.properties.fuel_source +
+                            "<br> Distance from click: " + distance.toLocaleString() + " km" +
+                            "<br>Capacity: " + layer.feature.properties.capacity_mw;
 
                 layer.bindPopup(popup);
 
@@ -177,6 +177,13 @@
             SolarLayer.eachLayer(function(layer) {
                 var distance = e.latlng.distanceTo(layer.getLatLng()) / 500; // distance as km
 
+                var popup = "Plant Name: " + layer.feature.properties.plant_name +
+                            "<br>Fuel Source: " + layer.feature.properties.fuel_source +
+                            "<br> Distance from click: " + distance.toLocaleString() + " km" +
+                            "<br>Capacity: " + layer.feature.properties.capacity_mw;
+
+                layer.bindPopup(popup);
+
                 if (distance > 500) {
                     layer.setStyle({
                         stroke: false,
@@ -192,6 +199,13 @@
 
             NuclearLayer.eachLayer(function(layer) {
                 var distance = e.latlng.distanceTo(layer.getLatLng()) / 1000; // distance as km
+
+                var popup = "Plant Name: " + layer.feature.properties.plant_name +
+                            "<br>Fuel Source: " + layer.feature.properties.fuel_source +
+                            "<br> Distance from click: " + distance.toLocaleString() + " km" +
+                            "<br>Capacity: " + layer.feature.properties.capacity_mw;
+
+                layer.bindPopup(popup);
 
                 if (distance > 500) {
                     layer.setStyle({
