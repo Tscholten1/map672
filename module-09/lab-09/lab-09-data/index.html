@@ -153,11 +153,13 @@
 
             coalLayer.eachLayer(function(layer) {
                 var distance = e.latlng.distanceTo(layer.getLatLng()) / 1000; // distance as km
-                layer.bindPopup("Plant Name: " + layer.feature.properties.plant_name)
-                //                               + "<br>Fuel Source: " + getFuelSource(layer.feature)
-                //                               + "<br> Distance from click: " + distance.toLocaleString()
-                //                               + " km" + "<br>Capacity: " + layer.feature.properties.capacity_mw +
 
+                var popup = "Plant Name: " + layer.feature.properties.plant_name +
+                            "<br>Fuel Source: " + getFuelSource(layer.feature) +
+                            "<br> Distance from click: " + distance.toLocaleString() +
+                            " km" + "<br>Capacity: " + layer.feature.properties.capacity_mw +
+
+                layer.bindPopup(popup);
 
                 if (distance > 500) {
                     layer.setStyle({
@@ -169,8 +171,6 @@
                         stroke: true,
                         fill: true
                     });
-                    layer.bindPopup("I am <b>" + distance.toLocaleString() +
-                        "km</b><br> from the click point.");
                 }
             });
 
@@ -187,8 +187,6 @@
                         stroke: true,
                         fill: true
                     });
-                    layer.bindPopup("I am <b>" + distance.toLocaleString() +
-                        "km</b><br> from the click point.");
                 }
             });
 
@@ -205,8 +203,6 @@
                         stroke: true,
                         fill: true
                     });
-                    layer.bindPopup("I am <b>" + distance.toLocaleString() +
-                        "km</b><br> from the click point.");
                 }
             });
         });
