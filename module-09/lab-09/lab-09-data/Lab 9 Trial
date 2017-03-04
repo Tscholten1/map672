@@ -6,7 +6,7 @@
     <title>Lab 09 Template</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
     <style>
@@ -58,159 +58,90 @@
         <p>MAP 672--Lab 9.</p>
     </footer>
 
-    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
     <script src="power-plants.js"></script>
     <script>
-       var map = L.map('map', {
-          center: [36,-94],
-          zoom: 4,
-      });
-      var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-          subdomains: 'abcd',
-          maxZoom: 19
-      });
-      tiles.addTo(map);
-// create a L.geoJson layer for COAL  
-var coalLayer = L.geoJson(plants, {
-pointToLayer: function(feature, latlng) {
-return L.circleMarker(latlng, {
-    // options here
-    color: '#775c5c',
-    fillColor: '#775c5c',
-    weight: 1,
-    stroke: 1,
-    fillOpacity: .8,
-    radius: getRadius(feature.properties.fuel_source.Coal)
-        })
-    },
-    filter: function(feature){
-    if (feature.properties.fuel_source.Coal) {
-    return feature;
-        }
-    }
-}).addTo(map);
-//layer.on('click', function () {
-//    layer.bindPopup("<b>Plant Name: " + feature.properties.plant_name + "</b><br>" + "Installed Capacity: " + feature.properties.capacity_mw + "Megawatts").openPopup(plants.properties);
-//    }); // creates a popup of data on a mouseclick
-    
-        
-//    }).addTo(map);
-//        console.log(plants);
-        
-function getRadius(val) {
+        var map = L.map('map', {
+            center: [36, -94],
+            zoom: 4,
+        });
+        var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        });
+        tiles.addTo(map);
+        // function takes a value and returns the radius of a circleMarker
+        function getRadius(val) {
             var radius = Math.sqrt(val / Math.PI);
             return radius * .8;
         }
-       map.on('click', function (e) {
-           console.log(e.latlng) // access to the click coordinates
-           coalLayer.eachLayer(function(layer) {
-               var distance = e.latlng.distanceTo(layer.getLatLng());
-               console.log(distance); // access to the layer coordinates
-           });
-       });
-       map.on('click', function(e) {
-           coalLayer.eachLayer(function(layer) {
-               var distance = e.latlng.distanceTo(layer.getLatLng())/1000; // distance as km  
-               layer.bindPopup("Plant Name: " + layer.feature.properties.plant_name)
-//                               + "<br>Fuel Source: " + getFuelSource(layer.feature)
-//                               + "<br> Distance from click: " + distance.toLocaleString()
-//                               + " km" + "<br>Capacity: " + layer.feature.properties.capacity_mw +
-                               
- if(distance > 500) {  
-        layer.setStyle({
-            stroke: false,
-            fill: false
-            });
-        } else {
-        layer.setStyle({
-        stroke: true,
-        fill: true
-        });
-        layer.bindPopup("I am <b>"+distance.toLocaleString()+
-        "km</b><br> from the click point.");
+        // create a L.geoJson layer for COAL
+        var coalLayer = L.geoJson(plants, {
+            pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, {
+                    // options here
+                    color: '#775c5c',
+                    fillColor: '#775c5c',
+                    weight: 1,
+                    stroke: 1,
+                    fillOpacity: .8,
+                    radius: getRadius(feature.properties.fuel_source.Coal)
+                })
+            },
+            filter: function(feature) {
+                if (feature.properties.fuel_source.Coal) {
+                    return feature;
+                }
             }
-        });
-});
-// create a L.geoJson layer for SOLAR 
-var SolarLayer = L.geoJson(plants, {
-pointToLayer: function(feature, latlng) {
-return L.circleMarker(latlng, {
-    // options here
-    color: '#F2FA08',
-    fillColor: '#F2FA08',
-    weight: 1,
-    stroke: 1,
-    fillOpacity: .8,
-    radius: getRadius(feature.properties.fuel_source.Solar)
-        })
-    },
-    filter: function(feature){
-    if (feature.properties.fuel_source.Solar) {
-    return feature;
-        }
-    }
-}).addTo(map);
-function getRadius(val) {
-            var radius = Math.sqrt(val / Math.PI);
-            return radius * .8;
-        }
-       map.on('click', function (e) {
-           console.log(e.latlng) // access to the click coordinates
-           SolarLayer.eachLayer(function(layer) {
-               var distance = e.latlng.distanceTo(layer.getLatLng());
-               console.log(distance); // access to the layer coordinates
-           });
-       });
-       map.on('click', function(e) {
-           SolarLayer.eachLayer(function(layer) {
-               var distance = e.latlng.distanceTo(layer.getLatLng())/1000; // distance as km   
-        
- if(distance > 500) {
-        layer.setStyle({
-            stroke: false,
-            fill: false
-            });
-        } else {
-        layer.setStyle({
-        stroke: true,
-        fill: true
-        });
-        layer.bindPopup("I am <b>"+distance.toLocaleString()+
-        "km</b><br> from the click point.");
+        }).addTo(map);
+        // create a L.geoJson layer for SOLAR
+        var SolarLayer = L.geoJson(plants, {
+            pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, {
+                    // options here
+                    color: '#F2FA08',
+                    fillColor: '#F2FA08',
+                    weight: 1,
+                    stroke: 1,
+                    fillOpacity: .8,
+                    radius: getRadius(feature.properties.fuel_source.Solar)
+                })
+            },
+            filter: function(feature) {
+                if (feature.properties.fuel_source.Solar) {
+                    return feature;
+                }
             }
-        });
-});
-        
-// create a L.geoJson layer for NUCLEAR 
-var NuclearLayer = L.geoJson(plants, {
-pointToLayer: function(feature, latlng) {
-return L.circleMarker(latlng, {
-    // options here
-    color: '#FA1008',
-    fillColor: '#Fa1008',
-    weight: 1,
-    stroke: 1,
-    fillOpacity: .8,
-    radius: getRadius(feature.properties.fuel_source.Nuclear)
-        })
-    },
-    filter: function(feature){
-    if (feature.properties.fuel_source.Nuclear) {
-    return feature;
-        }
-    }
-}).addTo(map);
-function getRadius(val) {
-            var radius = Math.sqrt(val / Math.PI);
-            return radius * .8;
-        }
-        
-         map.on('click', function (e) {
-           NuclearLayer.eachLayer(function(layer) {
-               var distance = e.latlng.distanceTo(layer.getLatLng())/1000; // distance as km
-               
-               if(distance > 500) {
+        }).addTo(map);
+        // create a L.geoJson layer for NUCLEAR
+        var NuclearLayer = L.geoJson(plants, {
+            pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, {
+                    // options here
+                    color: '#FA1008',
+                    fillColor: '#Fa1008',
+                    weight: 1,
+                    stroke: 1,
+                    fillOpacity: .8,
+                    radius: getRadius(feature.properties.fuel_source.Nuclear)
+                })
+            },
+            filter: function(feature) {
+                if (feature.properties.fuel_source.Nuclear) {
+                    return feature;
+                }
+            }
+        }).addTo(map);
+        map.on('click', function(e) {
+            coalLayer.eachLayer(function(layer) {
+                var distance = e.latlng.distanceTo(layer.getLatLng()) / 1000; // distance as km
+                var popup = "Plant Name: " + layer.feature.properties.plant_name +
+                            "<br>Fuel Source: " + layer.feature.properties.fuel_source +
+                            "<br> Distance from click: " + distance.toLocaleString() + " km" +
+                            "<br>Capacity: " + layer.feature.properties.capacity_mw;
+                layer.bindPopup(popup);
+                if (distance > 500) {
                     layer.setStyle({
                         stroke: false,
                         fill: false
@@ -220,52 +151,57 @@ function getRadius(val) {
                         stroke: true,
                         fill: true
                     });
-                    layer.bindPopup("I am <b>"+distance.toLocaleString()+
-                                   "km</b><br> from the click point.");      
                 }
+            });
+            SolarLayer.eachLayer(function(layer) {
+                var distance = e.latlng.distanceTo(layer.getLatLng()) / 500; // distance as km
+                var popup = "Plant Name: " + layer.feature.properties.plant_name +
+                            "<br>Fuel Source: " + layer.feature.properties.fuel_source +
+                            "<br> Distance from click: " + distance.toLocaleString() + " km" +
+                            "<br>Capacity: " + layer.feature.properties.capacity_mw;
+                layer.bindPopup(popup);
+                if (distance > 500) {
+                    layer.setStyle({
+                        stroke: false,
+                        fill: false
+                    });
+                } else {
+                    layer.setStyle({
+                        stroke: true,
+                        fill: true
+                    });
+                }
+            });
+            NuclearLayer.eachLayer(function(layer) {
+                var distance = e.latlng.distanceTo(layer.getLatLng()) / 1000; // distance as km
+                var popup = "Plant Name: " + layer.feature.properties.plant_name +
+                            "<br>Fuel Source: " + layer.feature.properties.fuel_source +
+                            "<br> Distance from click: " + distance.toLocaleString() + " km" +
+                            "<br>Capacity: " + layer.feature.properties.capacity_mw;
+                layer.bindPopup(popup);
+                if (distance > 500) {
+                    layer.setStyle({
+                        stroke: false,
+                        fill: false
+                    });
+                } else {
+                    layer.setStyle({
+                        stroke: true,
+                        fill: true
+                    });
+                }
+            });
         });
-});       
-// }).addTomap; 
-        
-//} 
-//function getradius(val) { 
-// var layerInfo = { 
-// coallayer: {source: "Coal", color: '#775c5c'}, 
-// solarlayer: {source: "Solar", color: '#F2FA08'}, 
-// nuclearlayer: {source: "Nuclear", color: '#FA1008'} 
-// }; 
-// var geoJsonLayers = {}; 
-// for(var layer in layerInfo) { 
-// geoJsonLayers[layer] = L.geoJson(plants, { 
-// pointToLayer: function(feature,latlng) { 
-// return L.circleMarker(latlng, commonStyles); 
-// }, 
-// style: function(feature) { 
-// return { 
-// color: layerInfo[layer].color, 
-// fillcolor: layerInfo[layer].color, 
-// radius: getRadius(feature.properties.fuel_source[layerInfo[layer].source]) 
-// } 
-// } 
-// }).addTomap; 
-// } 
-//function getRadius(val) { 
-//var radius = Math.sqrt(val / Math.PI); 
-//return radius * .8; 
-//} 
-//
-//var sourceLayer = {
-//"Coal": coalLayer, 
-//} 
-//
-var sourceLayers = { 
-"<b style='color:#775c5c'>Coal</b>": coalLayer, 
-"<b style='color:#F2FA08'>Solar</b>": SolarLayer, 
-"<b style='color:#FA1008'>Nuclear</b>": NuclearLayer 
-} 
-L.control.layers(null, sourceLayers, { collapsed:false }).addTo(map); 
-</script>        
-   
+        var sourceLayers = {
+            "<b style='color:#775c5c'>Coal</b>": coalLayer,
+            "<b style='color:#F2FA08'>Solar</b>": SolarLayer,
+            "<b style='color:#FA1008'>Nuclear</b>": NuclearLayer
+        }
+        L.control.layers(null, sourceLayers, {
+            collapsed: false
+        }).addTo(map);
+    </script>
+
 
 </body>
 
