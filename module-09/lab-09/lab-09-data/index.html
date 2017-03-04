@@ -217,10 +217,10 @@ return L.circleMarker(latlng, {
            SolarLayer.eachLayer(function(layer) {
                var distance = e.latlng.distanceTo(layer.getLatLng())/1000; // distance as km   
         
- if(distance > 500) {
-        layer.setStyle({
-            stroke: false,
-            fill: false
+// if(distance > 500) {
+//        layer.setStyle({
+//            stroke: false,
+//            fill: false
 //=======
                 if (distance > 500) {
                     layer.setStyle({
@@ -282,6 +282,7 @@ return L.circleMarker(latlng, {
         L.control.layers(null, sourceLayers, {
             collapsed: false
         }).addTo(map);
+                
     </script>
 </body>
 
