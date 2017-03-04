@@ -74,12 +74,11 @@
 //layer.on('click', function () {
 //    layer.bindPopup("<b>Plant Name: " + feature.properties.plant_name + "</b><br>" + "Installed Capacity: " + feature.properties.capacity_mw + "Megawatts").openPopup(plants.properties);
 //    }); // creates a popup of data on a mouseclick
-    
-        
+//    
 //    }).addTo(map);
 //        console.log(plants);
-        
-function getRadius(val) {
+//        
+//function getRadius(val) {
 //=======
         tiles.addTo(map);
         // function takes a value and returns the radius of a circleMarker
@@ -279,9 +278,7 @@ return L.circleMarker(latlng, {
             "<b style='color:#F2FA08'>Solar</b>": SolarLayer,
             "<b style='color:#FA1008'>Nuclear</b>": NuclearLayer
         }
-        L.control.layers(null, sourceLayers, {
-            collapsed: false
-        }).addTo(map);
+        L.control.layers(null, sourceLayers, {collapsed: false}).addTo(map);
                 
     </script>
 </body>
