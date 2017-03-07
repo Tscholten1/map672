@@ -77,6 +77,26 @@
             var radius = Math.sqrt(val / Math.PI);
             return radius * .8;
         }
+        
+        var radiusCircle = L.circle([0,0], 500000, {
+            fillColor: 'white',
+            fillOpacity: .1,
+            color: 'yellow',
+            opacity: .3,
+            stroke: false,
+            weight: 3,
+        }).addTo(map);  // spotlight feature creats 500 km bubble centered on user click
+        
+//        style: function (feature) {
+//                    return {
+//                        color: layerInfo[layer].color,
+//                        fillColor: layerInfo[layer].color,
+//                        radius: getRadius(feature.properties.fuel_source[layerInfo[layer].source])
+//                    }
+//                }
+//            }).addTo(map);
+//        } //loops though .js and adds only plants with layerInfo source matching .js fuel_source
+        
         // create a L.geoJson layer for COAL
         var coalLayer = L.geoJson(plants, {
             pointToLayer: function(feature, latlng) {
@@ -193,6 +213,15 @@
                 }
             });
         });
+        
+//        radiusCircle.setLatLng(e.latlng); //set circle center point on user click
+//        
+//        var statsContent = '';
+//        for (stat in stats) {
+//            statsContent += stat + ': <b>' + stats[stat].toLocaleString() + ' MW</b><br>'
+//        }
+//        radiusCircle.bindPopup(statsContent).openPopup();
+        
         var sourceLayers = {
             "<b style='color:#775c5c'>Coal</b>": coalLayer,
             "<b style='color:#F2FA08'>Solar</b>": SolarLayer,
