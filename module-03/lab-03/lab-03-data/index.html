@@ -19,47 +19,47 @@
             font-family: "Noto Sans", sans-serif;
             color: #3d3d3d;
         }
-        
+
         section {
             width: 960px;
             margin: 20px auto;
         }
-        
+
         h1 {
             width: 960px;
             margin: 20px auto;
             font-family: "Lora", serif;
             letter-spacing: .04em;
         }
-        
+
         h2 {
             font-family: "Lora", serif;
             letter-spacing: .04em;
         }
-        
+
         p {
             font-size: 1em;
             line-height: 1.5em;
         }
-        
+
         a {
             color: #005daa;
             font-weight: bold;
             text-decoration: none;
         }
-        
+
         a:hover {
             text-decoration: underline;
         }
-        
+
         ul {
             padding-left: 20px;
         }
-        
+
         li {
             margin: 10px 0
         }
-        
+
         #map {
             width: 960px;
             height: 540px;
@@ -85,10 +85,10 @@
 
 
         The total population of the three largest cities in Kentucky is:
-    
-       <p>The average population of the three largest cities in Kentucky is: </p> 
-        
-       
+
+       <p>The average population of the three largest cities in Kentucky is: </p>
+
+
 
     </section>
 
@@ -126,7 +126,7 @@
         var city2Lon = -84.87328;
         var city2Pop = 25300;
         var city2Capital = true;
-        //        
+        //
         var city3Name = "Louisville";
         var city3Lat = 38.328732;
         var city3Lon = -85.764771;
@@ -134,18 +134,16 @@
         var city3Capital = false;
 
         var totalpop = city1Pop + city2Pop + city3Pop;
-        //        
+
         console.log("The total population of the three largest cities in Kentucky is ", totalpop);
-        
-        var totalpop;
-        totalpop = (city1Pop + city2Pop + city3Pop);
-        //        
+
+        var averagepop = totalpop / 3;
+
         console.log("The average population of the three largest cities in Kentucky is ", averagepop);
-        averagepop = (city1Pop + city2Pop + city3Pop / 3);
-        var averagepop;
-        
+
         var cities = ["Lexington", "Frankfort", "Louisville"];
-        console.log(cities);
+
+        console.log(cities[2]);
 
         // END WRITING CODE FOR LAB 03 HERE
 
