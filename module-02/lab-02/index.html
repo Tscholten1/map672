@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset=utf-8 />
-	<title>Web Map Template Fixed Width</title>
+	<title>FreakFest is Coming to Madison, WI!!!!</title>
 	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css" />
@@ -73,18 +73,15 @@
 
 <body>
 
-	<h1>Awesome Map!!!!</h1>
+	<h1>FreakFest is Coming to Madison, WI!!!!</h1>
 	<div id="map"></div>
 
 	<section>
-		<h2>about this map</h2>
+		<h2>About this map</h2>
 
-		<p>Additional information about <a href="http://newmapsplus.uky.edu/">the data</a> the data and map goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-			<ul>
-				<li>See my projects on GitHub: <a href="https://github.com/newmapsplus">New Maps Plus</a></li>
-				<li>Follow me on twitter: <a href="https://twitter.com/NewMapsPlus">@NewMapsPlus</a></li>
-				<li>Visit my <a href='#'>mapping portfolio</a>.</li>
-			</ul>
+		<p><b>Map created by Tom Scholten for MAP672/Lab 2</b> 
+            
+            <a href="http://newmapsplus.uky.edu/"></a> <p>Madison, WI is the state capital of Wisconsin and the second largest city in the state. Madison is unique in many ways. Madison is home to the flagship campus of the University of Wisconsin which attracts thousands of student each many of whom come from different countries. Madison is unique policically in the sense that it is considered to be on the liberal/progressive side of political ideology, particularly in a moderate to conservative state. A third and perhaps most unique feature of Madison is the fact the the central business district and primary entertainment and dining attractions are located on an isthmus bounded by two lakes. Few cities in the U.S. are situated on the middle of an isthmus and this can occassionally become a traffic challenge. Often feature as one of the "Best Places for...." Madison is a great city to visit or live.  </p>  <p>As I interpret the concept of the Cartographic Gaze, Madison would be portrayed as a Google-type map where a "Gods-eye" view shows the city proper (with the isthmus at the center) while displaying small thumbnail size photo icons of well known and defining features of Madison. For example, places/locations such as the UW Campus, Camp Randall, The Kohl Center, Monona Terrace, and State Street would somehow be highlighted with a thumbnail picture of icon which the maper user would click on for additional information. Of course this assumes the map user is viewing the map in a web-based and interactive format.</p>
 	</section>
 
 
@@ -93,7 +90,7 @@
 	<script>
 		
 		var options = {
-			center: [38.0406, -84.5037],
+			center: [43.0731, -89.4012],
 			zoom: 6
 		}
 
@@ -105,7 +102,7 @@
 			maxZoom: 19
 		}).addTo(map);
 
-		var message = 'My hometown is awesome!';
+		var message = 'Come visit Madison, WI !';
 
 		L.marker(map.getCenter())
 			.bindTooltip(message)
