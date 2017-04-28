@@ -96,6 +96,8 @@
 //                }
 //            }).addTo(map);
 //        } //loops though .js and adds only plants with layerInfo source matching .js fuel_source
+       
+        
         
         // create a L.geoJson layer for COAL
         var coalLayer = L.geoJson(plants, {
@@ -135,6 +137,8 @@
                 }
             }
         }).addTo(map);
+    
+        
         // create a L.geoJson layer for NUCLEAR
         var NuclearLayer = L.geoJson(plants, {
             pointToLayer: function(feature, latlng) {
@@ -214,6 +218,8 @@
             });
         });
         
+        
+        
 //        radiusCircle.setLatLng(e.latlng); //set circle center point on user click
 //        
 //        var statsContent = '';
@@ -226,7 +232,9 @@
             "<b style='color:#775c5c'>Coal</b>": coalLayer,
             "<b style='color:#F2FA08'>Solar</b>": SolarLayer,
             "<b style='color:#FA1008'>Nuclear</b>": NuclearLayer
-        }
+        }  // Styling Legend
+        
+        
         L.control.layers(null, sourceLayers, {
             collapsed: false
         }).addTo(map);
